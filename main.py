@@ -15,8 +15,8 @@ question_list = question_list_builder()
 
 print("The total number of questions: ", len(question_list))
 
-n = 10
-for i in range(0,35):
+n = 1000
+for i in range(0,30):
   question_list_subset = question_list[i*n:(i+1)*n]
 
   resolve_question_list_coreference(nlp, question_list_subset)

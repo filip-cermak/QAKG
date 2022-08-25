@@ -1,0 +1,7 @@
+RACE/*
+venv/*
+corenlp/*
+data/*
+8.
+*.props
+__pycache__

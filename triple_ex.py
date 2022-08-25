@@ -2,13 +2,13 @@ import stanza
 
 # Download the Stanford CoreNLP package with Stanza's installation command
 # This'll take several minutes, depending on the network speed
-#corenlp_dir = './corenlp'
+corenlp_dir = './corenlp'
 
-#stanza.install_corenlp(dir=corenlp_dir)
+stanza.install_corenlp(dir=corenlp_dir)
 
 # Set the CORENLP_HOME environment variable to point to the installation location
-#import os
-#os.environ["CORENLP_HOME"] = corenlp_dir
+import os
+os.environ["CORENLP_HOME"] = corenlp_dir
 
 # Import client module
 from stanza.server import CoreNLPClient
@@ -30,7 +30,7 @@ import time; time.sleep(10)
 def triple2string(triple):
   return triple.subject + "-" + triple.relation + "-" + triple.object
 
-def extract_triples(extractor_client, text):
+def extract_triples(text):
   document = extractor_client.annotate(text)
 
   triples = []
@@ -40,9 +40,8 @@ def extract_triples(extractor_client, text):
 
   return [triple2string(t) for t in triples]
 
-
-def extract_triples_from_question_list(extractor_client, question_list):
+def extract_triples_from_question_list(question_list):
   for q in question_list:
-    q.context_triples = extract_triples(extractor_client, q.context_cor_resolved)
-    q.question_with_answer_triples = extract_triples(extractor_client, q.question_with_answer_cor_resolved)
-    q.question_with_distractors_triples = [extract_triples(extractor_client, i) for i in q.question_with_distractors_cor_resolved]
+    q.context_triples = extract_triples(q.context_cor_resolved)
+    q.question_with_answer_triples = extract_triples(q.question_with_answer_cor_resolved)
+    q.question_with_distractors_triples = [extract_triples(i) for i in q.question_with_distractors_cor_resolved]

@@ -22,6 +22,42 @@ class Question:
     self.question_with_answer_triples = None
     self.question_with_distractors_triples = None
 
+  def print_question(self):
+
+    print("Context")
+    print(self.context)
+    print("-----------------------------------------")
+    print("Question")
+    print(self.question.question)
+    print("-----------------------------------------")
+    print("Answer")
+    print(self.answer)
+    print("-----------------------------------------")
+    print("Distractors")
+    print(self.distractors)
+
+    print("#########################################")
+
+    print("Context_triples")
+    print(self.context_triples)
+    print("-----------------------------------------")
+    print("Answer_triples")
+    print(self.question_with_answer_triples)
+    print("-----------------------------------------")
+    print("Distractors_triples")
+    print(self.question_with_distractors_triples)
+
+    print("#########################################")
+    
+    print("Context - coref resolved")
+    print(self.context_cor_resolved)
+    print("-----------------------------------------")
+    print("Answer - coref resolved")
+    print(self.question_with_answer_cor_resolved)
+    print("-----------------------------------------")
+    print("Distractors - coref resolved")
+    print(self.question_with_distractors_cor_resolved)
+  
 class Entry:
   def __init__(self, answers, options, questions, article, id):
     # Default Params
@@ -53,6 +89,23 @@ class Entry:
                    ))
 
     return questions_list
+
+class Eval:
+
+  def intersect_len(self, a, b):
+    fst, snd = (a, b) if len(a) < len(b) else (b, a)
+    return len(set(fst).intersection(snd))
+    
+  def __init__(self, q):
+    self.question = q
+    self.id = q.id
+
+    #simple eval
+    self.num_correct_score = self.intersect_len(q.context_triples, q.question_with_answer_triples)
+    self.num_incorrect_scores =  [self.intersect_len(q.context_triples, l) for l in q.question_with_distractors_triples] 
+    self.num_incorrect_scores_total = sum(self.num_incorrect_scores)/len(self.num_incorrect_scores)
+    self.num_scores = [self.num_correct_score]
+    self.num_scores.extend(self.num_incorrect_scores)
 
 # Probably should create new class, but for now leaving like this:
 

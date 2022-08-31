@@ -28,7 +28,7 @@ class Question:
     print(self.context)
     print("-----------------------------------------")
     print("Question")
-    print(self.question.question)
+    print(self.question)
     print("-----------------------------------------")
     print("Answer")
     print(self.answer)

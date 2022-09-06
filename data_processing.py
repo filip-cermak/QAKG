@@ -7,7 +7,10 @@ def entry_builder(filename):
   return data_model.Entry(j["answers"], j["options"], j["questions"], j["article"], filename) #filename used as id instead
 
 def entry_list_builder():
-  root_dir = "RACE"
+  """
+  Only takes in test samples
+  """
+  root_dir = "RACE/test"
   file_list = list(glob.iglob(root_dir + "/**/*.txt", recursive=True))
   entry_list = [entry_builder(filename) for filename in file_list]
   return entry_list

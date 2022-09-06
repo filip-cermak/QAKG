@@ -1,3 +1,4 @@
+import data_model
 import stanza
 
 # Download the Stanford CoreNLP package with Stanza's installation command
@@ -29,6 +30,9 @@ import time; time.sleep(10)
 
 def triple2string(triple):
   return triple.subject + "-" + triple.relation + "-" + triple.object
+
+def triple2object(triple):
+  return data_model.Triple(triple.subject, triple.relation, triple.object)
 
 def extract_triples(text):
   document = extractor_client.annotate(text)

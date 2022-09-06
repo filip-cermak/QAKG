@@ -122,19 +122,24 @@ class Eval:
     for m in match_types:
       dictionary[m] = []
 
+    if triple_set_a == "":
+      return dictionary
+
     for triple_a in triple_set_a:
       longest_match = ""
       triple_match = None
       for triple_b in triple_set_b:
         match_type = triple_a.match(triple_b)
 
-        if len(longest_match) < match_type:
+        if len(longest_match) < len(match_type):
           longest_match = match_type
           triple_match = triple_b
 
-      if triple_match != None:
+      if triple_match != "":
         dictionary[longest_match].append([triple_a, triple_match])
-
+      else:
+        dictionary[longest_match].append([triple_a, Triple("#", "#", "#")])
+        
     return dictionary
 
 

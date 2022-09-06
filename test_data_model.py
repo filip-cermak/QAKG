@@ -52,15 +52,8 @@ def test_eval():
         "placeholder",
         "placeholder",
         "placeholder"
-    )
+    ) 
 
-    in_q.context_triples = [
-        data_model.Triple("a", "b", "c"),
-        data_model.Triple("c", "d", "e"),
-        data_model.Triple("x", "y", "z"),
-    ]    
-
-    """
     in_q.context_triples = [
         data_model.Triple("a", "b", "c"),
         data_model.Triple("c", "d", "e"),
@@ -69,24 +62,64 @@ def test_eval():
 
     in_q.question_with_answer_triples = [
         data_model.Triple("a", "b", "c"), # full
-        data_model.Triple("a", "b", "d"), #  lp
-        data_model.Triple("x", "y", "c"), # lp
-        data_model.Triple("q", "b", "q"), # r
-        data_model.Triple("x", "y", "z") # full
+        data_model.Triple("a", "b", "#"), # lp
+        data_model.Triple("x", "y", "#"), # lp
+        data_model.Triple("#", "b", "#"), # r
+        data_model.Triple("x", "y", "z"), # full
     ] 
 
     in_q.question_with_distractors_triples = [
-        [data_model.Triple("x", "y", "z")],
-        [data_model.Triple("x", "y", "z")],
-        [data_model.Triple("x", "y", "z")],
+        [
+            data_model.Triple("#", "#", "#"), # ""
+            data_model.Triple("#", "#", "e"), # "o"
+            data_model.Triple("x", "#", "#"), # "s"
+        ],
+        [data_model.Triple("#", "d", "e")], # rp
+        [data_model.Triple("x", "#", "z")], # sp
     ]
-    """
 
     e = data_model.Eval(in_q)
 
-    print(e.correct_answer_matches_summary)
+    assert e.correct_answer_matches_summary == {
+        '': 0, 
+        'full': 2,
+        'rp': 0, 
+        'sp': 0, 
+        'o': 0, 
+        's': 0, 
+        'r': 1, 
+        'lp': 2
+        }
 
-    assert False
-
-
-    #e.distractors_matches_summary
+    assert e.distractors_matches_summary == [
+        {
+        '': 1, 
+        'full': 0,
+        'rp': 0, 
+        'sp': 0, 
+        'o': 1, 
+        's': 1, 
+        'r': 0, 
+        'lp': 0
+        },
+        {
+        '': 0, 
+        'full': 0,
+        'rp': 1, 
+        'sp': 0, 
+        'o': 0, 
+        's': 0, 
+        'r': 0, 
+        'lp': 0
+        },
+        {
+        '': 0, 
+        'full': 0,
+        'rp': 0, 
+        'sp': 1, 
+        'o': 0, 
+        's': 0, 
+        'r': 0, 
+        'lp': 0
+        },
+    ]

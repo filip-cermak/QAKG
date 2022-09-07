@@ -15,9 +15,6 @@ question_list = question_list_builder()
 
 print("The total number of questions: ", len(question_list))
 
-# Only temp!!!!
-question_list = question_list[:10]
-
 print("Resolve Coreference")
 resolve_question_list_coreference(nlp, question_list)
 

@@ -4,7 +4,7 @@ import pickle
 
 from datetime import datetime
 
-from data_model import question_list_builder
+from data_processing import question_list_builder
 from coref import resolve_question_list_coreference
 from triple_ex import extract_triples_from_question_list
 
@@ -18,7 +18,12 @@ print("The total number of questions: ", len(question_list))
 # Only temp!!!!
 question_list = question_list[:10]
 
+print("Resolve Coreference")
 resolve_question_list_coreference(nlp, question_list)
+
+# Delete special characters from all strings, except for .,!?:
+
+print("Extract triples")
 extract_triples_from_question_list(question_list)
 
 with open('output/adjusted_question_list_' + str(datetime.now(tz=None)) + '_' + str(0) + '.pkl', 'wb') as out:

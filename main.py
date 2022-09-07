@@ -21,7 +21,7 @@ question_list = question_list[:10]
 print("Resolve Coreference")
 resolve_question_list_coreference(nlp, question_list)
 
-# Delete special characters from all strings, except for .,!?:
+# Delete special characters from all strings, except for .,!?:, also omit \* characters like \n
 
 print("Extract triples")
 extract_triples_from_question_list(question_list)

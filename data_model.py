@@ -151,7 +151,7 @@ class Triple:
     self.object = object
   
   def __repr__(self):
-    print(self.subject + "-" + self.relation + "-" + self.object)
+    return self.subject + "-" + self.relation + "-" + self.object
 
   def __str__(self):
     return self.subject + "-" + self.relation + "-" + self.object

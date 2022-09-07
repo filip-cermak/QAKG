@@ -42,7 +42,7 @@ def extract_triples(text):
       for triple in sentence.openieTriple:
           triples.append(triple)
 
-  return [triple2string(t) for t in triples]
+  return [triple2object(t) for t in triples]
 
 def extract_triples_from_question_list(question_list):
   for q in question_list:

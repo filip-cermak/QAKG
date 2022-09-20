@@ -1,0 +1,2 @@
+# UROP 2022 Knowledge Graph Representations
+This repository contains reusable data models and features for analyzing MCQ application of knowledge graphs, including fuzzy triple matching. Unit tests included.

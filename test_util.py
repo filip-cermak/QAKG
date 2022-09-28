@@ -33,3 +33,9 @@ def test_summarize_dict():
     expected_dict = {1:3, 2:1, 3:0, 4:5}
 
     assert util.summarize_dict(input_dict) == expected_dict
+
+def test_answer_joiner():
+
+    assert util.question_answer_joiner("The oldest one is _.", "Peter") == "The oldest one is Peter."
+    assert util.question_answer_joiner("Test question:", "Test answer") == "Test question: Test answer"
+    assert util.question_answer_joiner("Test _, _", "Answer") == "Test _, _ Answer"

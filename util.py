@@ -24,3 +24,14 @@ def summarize_dict(dictionary):
         out[key] = len(dictionary[key])
 
     return out
+
+def question_answer_joiner(question, answer):
+    underscore_count = question.count("_")
+
+    if underscore_count == 1:
+        return question.replace("_", answer)
+    elif underscore_count > 1:
+        print("Multiple underscores, cannot resolve")
+    
+    return question + " " + answer
+    

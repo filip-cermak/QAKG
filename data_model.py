@@ -10,8 +10,8 @@ class Question:
     self.context = context
     self.id = id
 
-    self.question_with_answer = self.question + " " + self.answer
-    self.question_with_distractors =[self.question + " " + d for d in self.distractors]
+    self.question_with_answer = util.question_answer_joiner(self.question, self.answer)
+    self.question_with_distractors =[util.question_answer_joiner(self.question, d) for d in self.distractors]
 
     # Fields for text after the coreference is resolved
     self.context_cor_resolved = None

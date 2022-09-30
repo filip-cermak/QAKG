@@ -103,13 +103,6 @@ class Eval:
     self.correct_answer_matches_summary = util.summarize_dict(self.correct_answer_matches)
     self.distractors_matches_summary = [util.summarize_dict(i) for i in self.distractors_matches] 
 
-    #legacy eval
-    #self.num_correct_score = util.intersect_len(q.context_triples, q.question_with_answer_triples)
-    #self.num_incorrect_scores =  [util.intersect_len(q.context_triples, l) for l in q.question_with_distractors_triples] 
-    #self.num_incorrect_scores_total = sum(self.num_incorrect_scores)/len(self.num_incorrect_scores)
-    #self.num_scores = [self.num_correct_score]
-    #self.num_scores.extend(self.num_incorrect_scores)
-
   def compare(self, triple_set_a, triple_set_b):
     """
     Picks triples from triple_set_a which match any triple from triple_set_b and

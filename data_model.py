@@ -1,4 +1,3 @@
-import copy
 import util
 
 class Question:
@@ -97,6 +96,7 @@ class Eval:
     self.id = q.id
 
     #composite eval
+
     self.correct_answer_matches = self.compare(q.question_with_answer_triples, q.context_triples)
     self.distractors_matches = [self.compare(d, q.context_triples) for d in q.question_with_distractors_triples]
 
@@ -149,11 +149,6 @@ class Triple:
   def __str__(self):
     return self.subject + "-@-" + self.relation + "-@-" + self.object
 
-  def __eq__(self, other):
-    return self.subject == other.subject and \
-           self.relation == other.relation and \
-           self.object == other.object
-
   def match(self, other):
     """Types of matches: full match - "full"
                          left pair - "lp"
@@ -165,7 +160,7 @@ class Triple:
                          none - ""
     """
 
-    if self == other:
+    if self.subject == other.subject and self.relation == other.relation and self.object == other.object:
       return "full"
 
     if self.subject == other.subject and self.relation == other.relation:

@@ -36,23 +36,3 @@ def triple_str_to_triple(triple_str):
 
 def convert_str_triple_list_to_obj_triple_list(str_triple_list):
     return [triple_str_to_triple(t) for t in str_triple_list]
-
-
-def question_triple_transformer(q):
-
-    out = data_model.Question(q.question, 
-                              q.answer, 
-                              q.distractors, 
-                              q.context,
-                              q.id)
-
-    out.context_cor_resolved = q.context_cor_resolved
-    out.question_with_answer_cor_resolved = q.question_with_answer_cor_resolved
-    out.question_with_distractors_cor_resolved = q.question_with_distractors_cor_resolved
-
-    out.context_triples = convert_str_triple_list_to_obj_triple_list(q.context_triples)
-    out.question_with_answer_triples = convert_str_triple_list_to_obj_triple_list(q.question_with_answer_triples)
-
-    out.question_with_distractors_triples = [convert_str_triple_list_to_obj_triple_list(l) for l in q.question_with_distractors_triples]
-
-    return out

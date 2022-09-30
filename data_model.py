@@ -151,10 +151,10 @@ class Triple:
     self.object = object
   
   def __repr__(self):
-    return self.subject + "-" + self.relation + "-" + self.object
+    return self.subject + "-@-" + self.relation + "-@-" + self.object
 
   def __str__(self):
-    return self.subject + "-" + self.relation + "-" + self.object
+    return self.subject + "-@-" + self.relation + "-@-" + self.object
 
   def __eq__(self, other):
     return self.subject == other.subject and \

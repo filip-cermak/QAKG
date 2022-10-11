@@ -39,3 +39,6 @@ def test_answer_joiner():
     assert util.question_answer_joiner("The oldest one is _.", "Peter") == "The oldest one is Peter."
     assert util.question_answer_joiner("Test question:", "Test answer") == "Test question: Test answer"
     assert util.question_answer_joiner("Test _, _", "Answer") == "Test _, _ Answer"
+
+def test_merge_dicts():
+    assert util.merge_dicts({"a" : 1, "b" : 23, "c" : 98}, {"a" : 2, "b" : -2, "c": 7}) == {"a" : 3, "b" : 21, "c" : 105}

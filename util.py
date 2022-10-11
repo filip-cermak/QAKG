@@ -35,3 +35,8 @@ def question_answer_joiner(question, answer):
     
     return question + " " + answer
     
+def merge_dicts(main_dic, add_dic):
+    for key in main_dic.keys():
+        main_dic[key] += add_dic[key]
+
+    return main_dic

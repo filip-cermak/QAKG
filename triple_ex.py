@@ -32,7 +32,7 @@ def triple2string(triple):
   return triple.subject + "-" + triple.relation + "-" + triple.object
 
 def triple2object(triple):
-  return data_model.Triple(triple.subject, triple.relation, triple.object)
+  return data_model.Triple(triple.subject, triple.relation, triple.object, triple.confidence)
 
 def extract_triples(text):
   document = extractor_client.annotate(text)

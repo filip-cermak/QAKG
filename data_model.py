@@ -138,10 +138,12 @@ class Eval:
 
 class Triple:
 
-  def __init__(self, subject, relation, object):
+  def __init__(self, subject, relation, object, confidence):
     self.subject = subject
     self.relation = relation
     self.object = object
+
+    self.confidence = confidence
   
   def __repr__(self):
     return self.subject + "-@-" + self.relation + "-@-" + self.object

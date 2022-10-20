@@ -138,7 +138,7 @@ class Eval:
 
 class Triple:
 
-  def __init__(self, subject, relation, object, confidence):
+  def __init__(self, subject, relation, object, confidence = 1):
     self.subject = subject
     self.relation = relation
     self.object = object

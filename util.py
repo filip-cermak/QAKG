@@ -40,3 +40,6 @@ def merge_dicts(main_dic, add_dic):
         main_dic[key] += add_dic[key]
 
     return main_dic
+
+def new_line_symbol_remover(s):
+    return s.replace("\n", " ")

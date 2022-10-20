@@ -42,3 +42,7 @@ def test_answer_joiner():
 
 def test_merge_dicts():
     assert util.merge_dicts({"a" : 1, "b" : 23, "c" : 98}, {"a" : 2, "b" : -2, "c": 7}) == {"a" : 3, "b" : 21, "c" : 105}
+
+def test_new_line_symbol_remover():
+    assert util.new_line_symbol_remover("This is a test,\nhow about you") == "This is a test, how about you"
+    assert util.new_line_symbol_remover("This \n, \n, hey") == "This  ,  , hey" 

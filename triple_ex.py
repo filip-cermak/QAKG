@@ -44,8 +44,16 @@ def extract_triples(text):
 
   return [triple2object(t) for t in triples]
 
-def extract_triples_from_question_list(question_list):
-  for q in question_list:
+def extract_triples_from_question_list(question_list, verbose = True):
+
+  if verbose:
+    l = len(question_list)
+    print(f'Total number of questions: {l}')
+
+  for i, q in enumerate(question_list):
     q.context_triples = extract_triples(q.context_cor_resolved)
     q.question_with_answer_triples = extract_triples(q.question_with_answer_cor_resolved)
     q.question_with_distractors_triples = [extract_triples(i) for i in q.question_with_distractors_cor_resolved]
+
+    if verbose:
+      print(f'Question {i} out of {l}')

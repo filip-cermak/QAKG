@@ -151,6 +151,9 @@ class Triple:
   def __str__(self):
     return self.subject + "-@-" + self.relation + "-@-" + self.object
 
+  def to_string(self, sep = " "):
+    return self.subject + sep + self.relation + sep + self.object
+
   def match(self, other):
     """Types of matches: full match - "full"
                          left pair - "lp"

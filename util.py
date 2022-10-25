@@ -43,3 +43,22 @@ def merge_dicts(main_dic, add_dic):
 
 def new_line_symbol_remover(s):
     return s.replace("\n", " ")
+
+def content_triple_filter(triple_list, text):
+    """Filter out all triples that do not share a word with the text"""
+    triple_list_out = []
+
+    for triple in triple_list:  
+        if word_matcher(triple.to_string(), text):
+            triple_list_out.append(triple)
+
+    return triple_list_out
+
+def word_matcher(a, b):
+    """if at least one word of lenght 3 or more matches, return true"""
+
+    for word in a.lower().split():
+        if (word in b.lower().split()) and len(word) >=3:
+            return True
+
+    return False

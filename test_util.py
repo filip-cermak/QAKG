@@ -1,4 +1,5 @@
 import util
+import data_model
 
 def test_intersect():
 
@@ -46,3 +47,25 @@ def test_merge_dicts():
 def test_new_line_symbol_remover():
     assert util.new_line_symbol_remover("This is a test,\nhow about you") == "This is a test, how about you"
     assert util.new_line_symbol_remover("This \n, \n, hey") == "This  ,  , hey" 
+    
+def test_content_triple_filter():
+
+    # Test case 1
+    triple_list = [
+        data_model.Triple("cat", "sat on", "mat"),
+        data_model.Triple("dog", "is a sat", "mat"), #does not match is because too short
+        data_model.Triple("animals", "such as", "cat and dog"),
+        data_model.Triple("animals", "being social", "cat and dog"),
+    ]
+
+    text = "Cat is a very social animal"
+    out = triple_list
+
+    del(out[1])
+
+    assert util.content_triple_filter(triple_list, text) == out
+
+def test_word_matcher():
+
+    assert util.word_matcher("cat sat on a mat", "cat on a mat") == True
+    assert util.word_matcher("at at ", "at") == False

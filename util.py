@@ -62,3 +62,57 @@ def word_matcher(a, b):
             return True
 
     return False
+
+def relativize(d):
+    net = sum(d.values())
+    out = {}
+    for k, v in d.items():
+        out[k] = v/net
+
+    return out
+
+def analyse(e_list):
+    # Make statistics - xx% of triple generated from Q+A were found in the context, xx%
+    qna_def = {"full" : 0, "lp" : 0, "rp" : 0, "sp" : 0, "o" : 0, "r" : 0, "s" : 0, "" : 0}
+    dna_def = {"full" : 0, "lp" : 0, "rp" : 0, "sp" : 0, "o" : 0, "r" : 0, "s" : 0, "" : 0}
+
+    for e in e_list:
+        qna = e.correct_answer_matches_summary
+        dnas = e.distractors_matches_summary
+
+        qna_def = merge_dicts(qna_def, qna)
+
+        for dna in dnas:
+            dna_def = merge_dicts(dna_def, dna)
+
+    return qna_def, relativize(qna_def), dna_def, relativize(dna_def)
+
+def analyse_simple(e_list):
+    # Make statistics - xx% of triple generated from Q+A were found in the context, xx%
+    qna_def = {"full" : 0, "lp" : 0, "rp" : 0, "sp" : 0, "o" : 0, "r" : 0, "s" : 0, "" : 0}
+    qnd_def = {"full" : 0, "lp" : 0, "rp" : 0, "sp" : 0, "o" : 0, "r" : 0, "s" : 0, "" : 0}
+
+    for e in e_list:
+        qna = e.correct_answer_matches_summary
+        qnds = e.distractors_matches_summary
+
+        qna_def = merge_dicts(qna_def, qna)
+
+        for dna in qnds:
+            qnd_def = merge_dicts(qnd_def, dna)
+
+    output_qna = {
+        "triple": qna_def["full"], 
+        "double": qna_def["lp"] + qna_def["rp"] + qna_def["sp"], 
+        "single": qna_def["o"] + qna_def["r"] + qna_def["s"], 
+        "none": qna_def[""] 
+        }
+
+    output_qnd = {
+        "triple": qnd_def["full"], 
+        "double": qnd_def["lp"] + qnd_def["rp"] + qnd_def["sp"], 
+        "single": qnd_def["o"] + qnd_def["r"] + qnd_def["s"], 
+        "none": qnd_def[""] 
+        }
+
+    return output_qna, relativize(output_qna), output_qnd, relativize(output_qnd)

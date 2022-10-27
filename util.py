@@ -116,3 +116,16 @@ def analyse_simple(e_list):
         }
 
     return output_qna, relativize(output_qna), output_qnd, relativize(output_qnd)
+
+def filter_triples(question_list):
+    
+    #filter answer triples
+    for q in question_list:
+        q.question_with_answer_triples = content_triple_filter(q.question_with_answer_triples, q.answer)
+
+    #filter distractor triples 
+    for q in question_list:
+        for i in range(len(q.question_with_distractors_triples)):
+            q.question_with_distractors_triples[i] = content_triple_filter(q.question_with_distractors_triples[i], q.distractors[i])
+
+    return question_list

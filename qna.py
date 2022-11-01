@@ -18,7 +18,7 @@ def question_evaluator(eval):
     else:
         correct_selected = False
 
-    return (correct_selected, winner_picked, match_type, option) 
+    return (correct_selected, winner_picked, match_type) 
 
 
 def evaluator(all_options):

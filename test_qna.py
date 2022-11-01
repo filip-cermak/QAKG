@@ -215,7 +215,7 @@ def test_question_evaluator():
         [data_model.Triple("-", "-", "c")]
     ]
 
-    assert (True, True, "double", 0) == qna.question_evaluator(data_model.Eval(q))
+    assert (True, True, "double") == qna.question_evaluator(data_model.Eval(q))
 
 def test_summarize_qna():
     q = data_model.Question("", "", "", "", "")

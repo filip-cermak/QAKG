@@ -1,3 +1,6 @@
+from asynchat import simple_producer
+
+
 def intersect(a, b):
     fst, snd = (a, b) if len(a) < len(b) else (b, a)
     return list(set(fst).intersection(snd))
@@ -87,6 +90,24 @@ def analyse(e_list):
 
     return qna_def, relativize(qna_def), dna_def, relativize(dna_def)
 
+def fuzzy_dict_simplifier(complicated_dic, option = None):
+    """
+    Simple match aggregator for downstream analysis
+    """
+
+    simpler_dic = {
+        "triple": complicated_dic["full"], 
+        "double": complicated_dic["lp"] + complicated_dic["rp"] + complicated_dic["sp"], 
+        "single": complicated_dic["o"] + complicated_dic["r"] + complicated_dic["s"], 
+        "none": complicated_dic[""] 
+        }
+
+    if option != None:
+        simpler_dic["option"] = option
+
+    return simpler_dic
+
+
 def analyse_simple(e_list):
     # Make statistics - xx% of triple generated from Q+A were found in the context, xx%
     qna_def = {"full" : 0, "lp" : 0, "rp" : 0, "sp" : 0, "o" : 0, "r" : 0, "s" : 0, "" : 0}
@@ -101,24 +122,13 @@ def analyse_simple(e_list):
         for dna in qnds:
             qnd_def = merge_dicts(qnd_def, dna)
 
-    output_qna = {
-        "triple": qna_def["full"], 
-        "double": qna_def["lp"] + qna_def["rp"] + qna_def["sp"], 
-        "single": qna_def["o"] + qna_def["r"] + qna_def["s"], 
-        "none": qna_def[""] 
-        }
-
-    output_qnd = {
-        "triple": qnd_def["full"], 
-        "double": qnd_def["lp"] + qnd_def["rp"] + qnd_def["sp"], 
-        "single": qnd_def["o"] + qnd_def["r"] + qnd_def["s"], 
-        "none": qnd_def[""] 
-        }
+    output_qna = fuzzy_dict_simplifier(qna_def)
+    output_qnd = fuzzy_dict_simplifier(qnd_def)
 
     return output_qna, relativize(output_qna), output_qnd, relativize(output_qnd)
 
 def filter_triples(question_list):
-    
+
     #filter answer triples
     for q in question_list:
         q.question_with_answer_triples = content_triple_filter(q.question_with_answer_triples, q.answer)

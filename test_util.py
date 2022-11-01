@@ -69,3 +69,45 @@ def test_word_matcher():
 
     assert util.word_matcher("cat sat on a mat", "cat on a mat") == True
     assert util.word_matcher("at at ", "at") == False
+
+def test_fuzzy_dict_simplifier():
+
+    out = util.fuzzy_dict_simplifier(
+        {
+            "full" : 1, 
+            "lp" : 2, 
+            "rp" : 3, 
+            "sp" : 4, 
+            "o" : 5, 
+            "r" : 6, 
+            "s" : 7, 
+            "" : 8
+        },
+        option = 1)
+
+    assert out == {
+        "triple" : 1,
+        "double" : 9,
+        "single" : 18,
+        "none" : 8,
+        "option" : 1
+        }
+
+    out = util.fuzzy_dict_simplifier(
+        {
+            "full" : 1, 
+            "lp" : 2, 
+            "rp" : 3, 
+            "sp" : 4, 
+            "o" : 5, 
+            "r" : 6, 
+            "s" : 7, 
+            "" : 8
+        })
+
+    assert out == {
+        "triple" : 1,
+        "double" : 9,
+        "single" : 18,
+        "none" : 8
+        }

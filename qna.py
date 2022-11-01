@@ -68,3 +68,5 @@ def summarize_qna(eval_list):
         l.append(question_evaluator(e))
 
     summary = util.summarize_list(l)
+
+    return summary

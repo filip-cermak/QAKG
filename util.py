@@ -139,3 +139,10 @@ def filter_triples(question_list):
             q.question_with_distractors_triples[i] = content_triple_filter(q.question_with_distractors_triples[i], q.distractors[i])
 
     return question_list
+
+def compare_matches(a, b):
+
+    if a["triple"] == b["triple"] and a["double"] == b["double"] and a["single"] == b["single"]:
+        return True
+
+    return False

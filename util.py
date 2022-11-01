@@ -146,3 +146,15 @@ def compare_matches(a, b):
         return True
 
     return False
+
+def summarize_list(l):
+
+    out = {}
+
+    for el in l:
+        if el not in out:
+            out[el] = 1
+        else:
+            out[el] += 1
+
+    return out

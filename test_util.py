@@ -111,3 +111,9 @@ def test_fuzzy_dict_simplifier():
         "single" : 18,
         "none" : 8
         }
+
+def test_summarize_list():
+
+    input = [1, 1, "bcd", 1, "a", 1, "a", "a", "bcd"]
+
+    assert {1 : 4, "bcd" : 2, "a" : 3} == util.summarize_list(input)

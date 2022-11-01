@@ -69,4 +69,43 @@ def summarize_qna(eval_list):
 
     summary = util.summarize_list(l)
 
+    t = sum(list(summary.values()))
+
+    #correctly determined answer
+    #Absolute
+    f = True
+    print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
+
+    #Relative + breakdown
+    print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
+
+    print(summary[(f, True, 'triple')]/t)
+    print(summary[(f, True, 'double')]/t)
+    print(summary[(f, True, 'single')]/t)
+
+    #incorrectly determined answer 
+
+    #Absolute
+    f = False
+    print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
+
+    #Relative + breakdown
+    print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
+
+    print(summary[(f, True, 'triple')]/t)
+    print(summary[(f, True, 'double')]/t)
+    print(summary[(f, True, 'single')]/t)
+
+    #Unidentified
+    #Absolute
+    print(summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])
+
+    #Relative + breakdown
+    print((summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])/t)
+
+    print(summary[(False, False, 'draw')]/t)
+    print(summary[(False, False, 'all_equivalent')]/t)
+    print(summary[(False, False, 'no_matches')]/t)
+    
     return summary
+

@@ -1,16 +1,8 @@
 import util
 
-def question_evaluator_cascade(eval):
+def question_evaluator(eval):
     """
-    There are 3 possible outputs:
-        1. No triples generated for Q+A/D+A
-        2. Better match for Q+A - question answered correctly
-        3. Better match for Q+S - question answered incorrectly
-
-    Also return quality of the match:
-        1. Decided based on triples
-        2. Decided based on doubles
-        3. Decided base on singles
+    Only adds correct_selected flag to the evaluator output
     """
 
     all_options  = []
@@ -22,11 +14,11 @@ def question_evaluator_cascade(eval):
     winner_picked, match_type, option = evaluator(all_options)
 
     if winner_picked and option == 0:
-        corect_selected = True
+        correct_selected = True
     else:
-        corect_selected = False
+        correct_selected = False
 
-    return [corect_selected, winner_picked, match_type, option] 
+    return [correct_selected, winner_picked, match_type, option] 
 
 
 def evaluator(all_options):

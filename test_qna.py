@@ -1,4 +1,5 @@
 import qna
+import data_model
 
 def test_evaluator():
 
@@ -200,3 +201,18 @@ def test_evaluator():
     ]
 
     assert [True, "single", 0] == qna.evaluator(test_case_6)
+
+def test_question_evaluator():
+    q = data_model.Question("", "", "", "", "")
+
+    q.context_triples = [data_model.Triple("a", "b", "c")]
+
+    q.question_with_answer_triples = [data_model.Triple("a", "-", "c")]
+
+    q.question_with_distractors_triples = [
+        [data_model.Triple("a", "-", "-")],
+        [data_model.Triple("-", "b", "-")],
+        [data_model.Triple("-", "-", "c")]
+    ]
+
+    assert [True, True, "double", 0] == qna.question_evaluator(data_model.Eval(q))

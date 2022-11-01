@@ -35,7 +35,7 @@ def test_evaluator():
         },
     ]
 
-    assert [False, "no_matches", -1] == qna.evaluator(test_case_1)
+    assert (False, "no_matches", -1) == qna.evaluator(test_case_1)
 
     test_case_2 = [
         {
@@ -68,7 +68,7 @@ def test_evaluator():
         },
     ]
 
-    assert [False, "all_equivalent", -1] == qna.evaluator(test_case_2)
+    assert (False, "all_equivalent", -1) == qna.evaluator(test_case_2)
 
     test_case_3 = [
         {
@@ -101,7 +101,7 @@ def test_evaluator():
         },
     ]
 
-    assert [False, "draw", -1] == qna.evaluator(test_case_3)
+    assert (False, "draw", -1) == qna.evaluator(test_case_3)
 
     test_case_4 = [
         {
@@ -134,7 +134,7 @@ def test_evaluator():
         },
     ]
 
-    assert [True, "triple", 2] == qna.evaluator(test_case_4)
+    assert (True, "triple", 2) == qna.evaluator(test_case_4)
 
     test_case_5 = [
         {
@@ -167,7 +167,7 @@ def test_evaluator():
         },
     ]
 
-    assert [True, "double", 3] == qna.evaluator(test_case_5)
+    assert (True, "double", 3) == qna.evaluator(test_case_5)
 
     test_case_6 = [
         {
@@ -200,7 +200,7 @@ def test_evaluator():
         },
     ]
 
-    assert [True, "single", 0] == qna.evaluator(test_case_6)
+    assert (True, "single", 0) == qna.evaluator(test_case_6)
 
 def test_question_evaluator():
     q = data_model.Question("", "", "", "", "")
@@ -215,4 +215,21 @@ def test_question_evaluator():
         [data_model.Triple("-", "-", "c")]
     ]
 
-    assert [True, True, "double", 0] == qna.question_evaluator(data_model.Eval(q))
+    assert (True, True, "double", 0) == qna.question_evaluator(data_model.Eval(q))
+
+def test_summarize_qna():
+    q = data_model.Question("", "", "", "", "")
+
+    q.context_triples = [data_model.Triple("a", "b", "c")]
+
+    q.question_with_answer_triples = [data_model.Triple("a", "-", "c")]
+
+    q.question_with_distractors_triples = [
+        [data_model.Triple("a", "-", "-")],
+        [data_model.Triple("-", "b", "-")],
+        [data_model.Triple("-", "-", "c")]
+    ]
+    
+    print(qna.summarize_qna([data_model.Eval(q)]))
+
+    #assert False

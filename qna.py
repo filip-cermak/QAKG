@@ -71,41 +71,45 @@ def summarize_qna(eval_list):
 
     t = sum(list(summary.values()))
 
-    #correctly determined answer
-    #Absolute
-    f = True
-    print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
+    try: # in try clause since test cases do not contain all the options required for priting below 
+        #correctly determined answer
+        #Absolute
+        f = True
+        print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
 
-    #Relative + breakdown
-    print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
+        #Relative + breakdown
+        print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
 
-    print(summary[(f, True, 'triple')]/t)
-    print(summary[(f, True, 'double')]/t)
-    print(summary[(f, True, 'single')]/t)
+        print(summary[(f, True, 'triple')]/t)
+        print(summary[(f, True, 'double')]/t)
+        print(summary[(f, True, 'single')]/t)
 
-    #incorrectly determined answer 
+        #incorrectly determined answer 
 
-    #Absolute
-    f = False
-    print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
+        #Absolute
+        f = False
+        print(summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])
 
-    #Relative + breakdown
-    print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
+        #Relative + breakdown
+        print((summary[(f, True, 'triple')] + summary[(f, True, 'double')] + summary[(f, True, 'single')])/t)
 
-    print(summary[(f, True, 'triple')]/t)
-    print(summary[(f, True, 'double')]/t)
-    print(summary[(f, True, 'single')]/t)
+        print(summary[(f, True, 'triple')]/t)
+        print(summary[(f, True, 'double')]/t)
+        print(summary[(f, True, 'single')]/t)
 
-    #Unidentified
-    #Absolute
-    print(summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])
+        #Unidentified
+        #Absolute
+        print(summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])
 
-    #Relative + breakdown
-    print((summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])/t)
+        #Relative + breakdown
+        print((summary[(False, False, 'draw')] + summary[(False, False, 'all_equivalent')] + summary[(False, False, 'no_matches')])/t)
 
-    print(summary[(False, False, 'draw')]/t)
-    print(summary[(False, False, 'all_equivalent')]/t)
-    print(summary[(False, False, 'no_matches')]/t)
-    
+        print(summary[(False, False, 'draw')]/t)
+        print(summary[(False, False, 'all_equivalent')]/t)
+        print(summary[(False, False, 'no_matches')]/t)
+
+    except:
+        pass
+
     return summary
 

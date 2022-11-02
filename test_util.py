@@ -59,11 +59,12 @@ def test_content_triple_filter():
     ]
 
     text = "Cat is a very social animal"
-    out = triple_list
 
-    del(out[1])
+    output = util.content_triple_filter(triple_list, text, True)
 
-    assert util.content_triple_filter(triple_list, text) == out
+    del(triple_list[1])
+
+    assert triple_list == output
 
 def test_word_matcher():
 

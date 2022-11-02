@@ -47,7 +47,7 @@ def merge_dicts(main_dic, add_dic):
 def new_line_symbol_remover(s):
     return s.replace("\n", " ")
 
-def content_triple_filter(triple_list, text, verbous = False):
+def content_triple_filter(triple_list, text, verbose = False):
     """Filter out all triples that do not share a word with the text"""
     triple_list_out = []
 
@@ -55,7 +55,7 @@ def content_triple_filter(triple_list, text, verbous = False):
         if word_matcher(triple.to_string(), text):
             triple_list_out.append(triple)
 
-    if verbous:
+    if verbose:
         print([x.to_string() for x in list(set(triple_list) - set(triple_list_out))])
 
     return triple_list_out

@@ -144,6 +144,24 @@ class Triple:
     self.object = object
 
     self.confidence = confidence
+
+    #this implementation is rellying on the fact that 
+
+    #these lists contain dictionaries of the form {sentenceIndex:0, tokenIndex:1}
+    self.subject_tokens = None 
+    self.relation_tokens = None
+    self.object_tokens = None
+
+    #these lists contain pairs [x,y] where x is the first character of the word and
+    #y is the first character after the word 
+    self.subject_words = None 
+    self.relation_words = None
+    self.object_words = None
+
+    #thise lists contain lists of vector embeddings, each embedding list corresponds to one word
+    self.subject_embeds = [] 
+    self.relation_embeds = []
+    self.object_embeds = []
   
   """
   def __repr__(self):
@@ -189,3 +207,6 @@ class Triple:
       return "o"
 
     return ""
+
+  def semantic_triple(self):
+    return [self.subject_embeds, self.relation_embeds, self.object_embeds]

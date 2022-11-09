@@ -1,48 +1,67 @@
 import data_model
-import stanza
-
-# Download the Stanford CoreNLP package with Stanza's installation command
-# This'll take several minutes, depending on the network speed
-corenlp_dir = './corenlp'
-
-stanza.install_corenlp(dir=corenlp_dir)
-
-# Set the CORENLP_HOME environment variable to point to the installation location
-import os
-os.environ["CORENLP_HOME"] = corenlp_dir
-
-# Import client module
-from stanza.server import CoreNLPClient
-
-#custom_props = {"openie.resolve_coref": True}
-# Construct a CoreNLPClient with some basic annotators, a memory allocation of 4GB, and port number 9001
-extractor_client = CoreNLPClient(
-    annotators=['openie'],
-    #properties = custom_props,
-    memory='4G', 
-    endpoint='http://localhost:9001',
-    be_quiet=True)
-
-# Start the background server and wait for some time
-# Note that in practice this is totally optional, as by default the server will be started when the first annotation is performed
-extractor_client.start()
-import time; time.sleep(10)
 
 def triple2string(triple):
   return triple.subject + "-" + triple.relation + "-" + triple.object
 
 def triple2object(triple):
-  return data_model.Triple(triple.subject, triple.relation, triple.object, triple.confidence)
+  t_out = data_model.Triple(triple.subject, triple.relation, triple.object, triple.confidence)
+
+  t_out.subject_tokens = triple.subjectTokens
+  t_out.relation_tokens = triple.relationTokens
+  t_out.object_tokens = triple.objectTokens
+
+  return t_out
 
 def extract_triples(text):
-  document = extractor_client.annotate(text)
+
+  import init_stanza
+ 
+  document = init_stanza.extractor_client.annotate(text)
 
   triples = []
-  for sentence in document.sentence:
-      for triple in sentence.openieTriple:
-          triples.append(triple)
 
-  return [triple2object(t) for t in triples]
+  for i_s, s in enumerate(document.sentence):
+    triples_temp = []
+
+    for j_t, t in enumerate(t.openieTriple):
+        triples_temp.append(triple2object(t))
+
+    #convert tokens into word locations
+    triples_temp = [tokens2loc(t, i_s, s) for t in triples_temp]
+
+    triples.extend(triples_temp)
+
+  return triples
+
+def tokens2loc(triple, i, sentence):
+
+  tokens = sentence.token
+
+  resolve_dic = {}
+
+  for t in tokens:
+    resolve_dic[t.tokenBeginIndex] = [t.beginChar, t.endChar] 
+    
+    if t.tokenBeginIndex + 1 != t.tokenEndIndex:  
+      raise ValueError
+
+  triple.subject_words = tokens2loc_helper(triple.subject_tokens, resolve_dic)
+  triple.relation_words = tokens2loc_helper(triple.relation_tokens, resolve_dic)
+  triple.object_words = tokens2loc_helper(triple.object_tokens, resolve_dic)
+
+  #check whether all tokens from the current sentence
+  token_check = triple.subject_tokens + triple.relation_tokens + triple.object_tokens
+  test_out = [t for t in token_check if t.SentenceIndex != i]
+
+  if len(test_out) > 0:
+    raise ValueError
+
+  return triple
+
+def tokens2loc_helper(token_list, resolve_dic):
+  
+  return [resolve_dic[t.tokenIndex] for t in token_list]
+
 
 def extract_triples_from_question_list(question_list, verbose = True):
 

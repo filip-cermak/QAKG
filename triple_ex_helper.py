@@ -27,6 +27,9 @@ def extract_triples_helper(text, extractor_client):
     #convert tokens into word locations
     triples_temp = [tokens2loc(t, i_s, s) for t in triples_temp]
 
+    # make triples pickable
+    [t.make_pickable() for t in triples_temp]
+
     triples.extend(triples_temp)
 
   return triples

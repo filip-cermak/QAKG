@@ -208,3 +208,8 @@ class Triple:
 
   def semantic_triple(self):
     return [self.subject_words, self.relation_words, self.object_words]
+
+  def make_pickable(self):
+    self.subject_tokens = None 
+    self.relation_tokens = None
+    self.object_tokens = None

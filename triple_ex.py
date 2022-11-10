@@ -34,3 +34,17 @@ def extract_triples(text):
 
 def terminate():
   extractor_client.stop()
+
+def extract_triples_from_question_list(question_list, verbose = True):
+
+  if verbose:
+    l = len(question_list)
+    print(f'Total number of questions: {l}')
+
+  for i, q in enumerate(question_list):
+    q.context_triples = extract_triples(q.context_cor_resolved)
+    q.question_with_answer_triples = extract_triples(q.question_with_answer_cor_resolved)
+    q.question_with_distractors_triples = [extract_triples(j) for j in q.question_with_distractors_cor_resolved]
+
+    if verbose:
+      print(f'Question {i} out of {l}')

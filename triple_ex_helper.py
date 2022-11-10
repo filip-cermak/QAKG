@@ -51,11 +51,11 @@ def tokens2loc(triple, i, sentence):
   triple.object_words = tokens2loc_helper(triple.object_tokens, resolve_dic)
 
   #check whether all tokens from the current sentence
-  token_check = triple.subject_tokens + triple.relation_tokens + triple.object_tokens
-  test_out = [t for t in token_check if t.SentenceIndex != i]
+  #token_check = triple.subject_tokens + triple.relation_tokens + triple.object_tokens
+  #test_out = [t for t in token_check if t.SentenceIndex != i]
 
-  if len(test_out) > 0:
-    raise ValueError
+  #if len(test_out) > 0:
+  #  raise ValueError
 
   return triple
 

@@ -21,8 +21,8 @@ def question2sentences(q):
 
     return out
 
-def sentences2txt(l, filename='sentences.txt'):
-    with open('output/' + filename, 'w') as f:
+def sentences2txt(l, folder='output', filename='sentences.txt'):
+    with open(folder + '/' + filename, 'w') as f:
         
         for sentence in l:
             f.write('%s\n' % sentence)

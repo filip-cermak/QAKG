@@ -7,5 +7,3 @@ print(t)
 def test_embed():
 
     print(embed.embed("This is a test."))
-
-    assert False

@@ -145,8 +145,6 @@ class Triple:
 
     self.confidence = confidence
 
-    #this implementation is rellying on the fact that 
-
     #these lists contain dictionaries of the form {sentenceIndex:0, tokenIndex:1}
     self.subject_tokens = None 
     self.relation_tokens = None
@@ -209,4 +207,4 @@ class Triple:
     return ""
 
   def semantic_triple(self):
-    return [self.subject_embeds, self.relation_embeds, self.object_embeds]
+    return [self.subject_words, self.relation_words, self.object_words]

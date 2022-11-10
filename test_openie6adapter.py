@@ -4,8 +4,8 @@ import data_model
 
 def test_sentences2txt():
     """Not a proper unit test"""
-    openie6adapter.sentences2txt(["test.", "test.", "test.", "test."])
-    os.remove("output/sentences.txt")
+    openie6adapter.sentences2txt(["test.", "test.", "test.", "test."], folder="test_files")
+    os.remove("test_files/sentences.txt")
 
 def test_question2sentences():
     """Not a proper unit test"""

@@ -60,5 +60,5 @@ def export_dic_to_jsonl(dic):
 
     with open("P0.jsonl", "w") as f:
         for i, s in enumerate(list(dic.keys())):
-            f.write(json.dumps({"id" : i, "title" : i, "text" : s})) # ???? title
+            f.write(json.dumps({"id" : str(i), "title" : str(i), "text" : s})) # ???? title
             f.write('\n')       

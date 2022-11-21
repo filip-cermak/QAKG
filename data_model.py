@@ -136,7 +136,7 @@ class Eval:
     return dictionary
 
 
-class Triple:
+class Triple: #todo - make a base Triple class and child triple classes
 
   def __init__(self, subject, relation, object, confidence = 1):
     self.subject = subject
@@ -213,3 +213,10 @@ class Triple:
     self.subject_tokens = None 
     self.relation_tokens = None
     self.object_tokens = None
+
+class Deepex_triple(Triple):
+  def __init__(self, subject, relation, object, score, contrastive_dis):
+    Triple.__init__(self, subject, relation, object, 1)
+
+    self.score = score
+    self.contrastive_dis = contrastive_dis

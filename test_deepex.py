@@ -2,6 +2,7 @@ import deepex
 import data_model
 import nltk.data
 import os
+import json
 
 
 def test_create_question_ids():
@@ -19,7 +20,7 @@ def test_create_question_ids():
             Dummy_q("c")
         ])
 
-    assert out == ["a%0", "b%0", "b%1", "a%1", "c%0"]        
+    assert list(out.keys()) == ["a%0", "b%0", "b%1", "a%1", "c%0"]        
 
 def test_sentence_assigner():
 
@@ -121,3 +122,45 @@ def test_export_dic_to_jsonl():
     )
 
     os.remove("P0.jsonl")
+
+def test_json_to_triples():
+
+    sentences_with_ids = {
+        'a' : ['q%0%context%0'],
+        'b' : ['q%0%qnd-1%0']
+        }
+
+    out = deepex.json_to_triples('test_files/P0_result.json', sentences_with_ids)
+
+def test_json_triple_to_triple():
+
+    with open('test_files/P0_result.json', 'r') as f:
+        s = json.load(f)
+
+    triple = s['0000000000000000000000000000000000000001'][0]
+    
+    deepex_triple = deepex.json_triple_to_triple(triple)
+
+def test_decode_deepex():
+    #TODO
+    pass
+    #deepex.decode_deepex()
+
+def test_decode_deepex_helper():
+    #TODO
+    """
+    with open('test_files/P0_result.json', 'r') as f:
+        s = json.load(f)
+
+    question_list = []
+
+    ids_with_questions = deepex.create_question_ids(question_list)
+
+
+    triples = {
+        ['q%0%context%0', 'q%0%qnd-1%0'] : deepex.json_triple_to_triple(s['0000000000000000000000000000000000000001'][0])
+    }
+
+    deepex.decode_deepex_helper(id, triples, ids_with_questions)
+
+    """

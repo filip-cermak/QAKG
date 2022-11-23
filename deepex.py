@@ -77,7 +77,7 @@ def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
 
         counter = 0
         for i, l in enumerate(temp_list):
-            with open(str(i), "w") as f:            
+            with open("partitioned/" + str(i), "w") as f:            
                 for s in l:
                     f.write(json.dumps({"id" : str(counter), "title" : str(counter), "text" : s}))
                     f.write('\n')

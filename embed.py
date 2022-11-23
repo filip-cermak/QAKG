@@ -15,7 +15,7 @@ def embed(s):
 
     chr_spans_with_embeddings = {}
 
-    for i, e in enumerate(embeddings):
+    for i, e in enumerate(embeddings[0]):
         start = tokenizer(s).token_to_chars(i).start
         end = tokenizer(s).token_to_chars(i).end
         chr_spans_with_embeddings[(start, end)] = e

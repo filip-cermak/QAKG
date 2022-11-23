@@ -55,13 +55,33 @@ def create_question_ids(question_list):
 
     return out
 
-def export_dic_to_jsonl(dic):
+def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
     d_list = []
 
-    with open("P0.jsonl", "w") as f:
-        for i, s in enumerate(list(dic.keys())):
-            f.write(json.dumps({"id" : str(i), "title" : str(i), "text" : s})) # ???? title
-            f.write('\n')       
+    if not partition:
+        with open("P0.jsonl", "w") as f:
+            for i, s in enumerate(list(dic.keys())):
+                f.write(json.dumps({"id" : str(i), "title" : str(i), "text" : s})) # ???? title
+                f.write('\n')
+    else:
+        sentences = list(dic.keys())
+        
+        n = len(dic)//partition_length
+
+        temp_list = []
+
+        for i in range(n):
+            temp_list.append(sentences[i*partition_length:(i+1)*partition_length])
+
+        temp_list.append(sentences[(i+1)*partition_length:])
+
+        counter = 0
+        for i, l in enumerate(temp_list):
+            with open(str(i), "w") as f:            
+                for s in l:
+                    f.write(json.dumps({"id" : str(counter), "title" : str(counter), "text" : s}))
+                    f.write('\n')
+                    counter += 1
 
 def json_to_triples(filename, sentences_with_ids):
     triples = {}

@@ -123,6 +123,22 @@ def test_export_dic_to_jsonl():
 
     os.remove("P0.jsonl")
 
+    """     deepex.export_dic_to_jsonl(
+        {
+            'a' : ['1', '2'],
+            'b' : ['2'],
+            'c' : ['4'],
+            'd' : ['4'],
+            'e' : ['4'],
+            'f' : ['4'],
+            'g' : ['4'],
+        },
+        True,
+        3
+    )
+
+    """
+    
 def test_json_to_triples():
 
     sentences_with_ids = {

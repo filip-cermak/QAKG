@@ -1,4 +1,5 @@
 from transformers import AutoTokenizer, AutoModel, pipeline
+from tqdm import tqdm
 
 tokenizer = AutoTokenizer.from_pretrained("gpt2")
 model = AutoModel.from_pretrained("gpt2")
@@ -55,7 +56,7 @@ def add_embeddings_to_question_helper(q):
         enrich_triples(q.question_with_distractors_triples[i], chr_spans_with_embeddings)
 
 def add_embeddings_to_questions(q_list):
-    for q in q_list:
+    for q in tqdm(q_list):
         add_embeddings_to_question_helper(q)
 
 def enrich_triples(triples, chr_spans_with_embeddings):

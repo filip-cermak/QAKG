@@ -8,19 +8,23 @@ tokenizer.add_special_tokens({'pad_token': '[PAD]'})
 model.resize_token_embeddings(len(tokenizer))
 
 def embed(s):
-    pipe = pipeline('feature-extraction', model=model, tokenizer=tokenizer)
-    
-    tokens = tokenizer.tokenize(s)
-    embeddings = pipe(s)
+    try:
+        pipe = pipeline('feature-extraction', model=model, tokenizer=tokenizer)
+        
+        tokens = tokenizer.tokenize(s)
+        embeddings = pipe(s)
 
-    chr_spans_with_embeddings = {}
+        chr_spans_with_embeddings = {}
 
-    for i, e in enumerate(embeddings[0]):
-        start = tokenizer(s).token_to_chars(i).start
-        end = tokenizer(s).token_to_chars(i).end
-        chr_spans_with_embeddings[(start, end)] = e
+        for i, e in enumerate(embeddings[0]):
+            start = tokenizer(s).token_to_chars(i).start
+            end = tokenizer(s).token_to_chars(i).end
+            chr_spans_with_embeddings[(start, end)] = e
 
-    return chr_spans_with_embeddings
+        return chr_spans_with_embeddings
+
+    except:
+        return {}
 
 def chr_spn_matcher(ref_chr_spn, list_of_chr_spns):
     # returns all char_span-s from the list that match

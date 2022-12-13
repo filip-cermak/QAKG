@@ -1,5 +1,8 @@
 import data_model
 
+import numpy as np
+import copy
+
 def test_triple():
 
     # match()
@@ -123,3 +126,36 @@ def test_eval():
         'lp': 0
         },
     ]
+
+def test_semantic_triple():
+
+    #mock input class
+    t = data_model.Triple("", "", "")
+    t.subject_embeds = [[np.array([0,1])], [np.array([-1,0]), np.array([1,0.5])]]
+    t.relation_embeds = [[np.array([0,0]), np.array([0,0])], [np.array([0,0])]]
+    t.object_embeds = [[np.array([3,5])]]
+
+    #test analyse_embeddings
+    sem_t = data_model.Semantic_triple(t)
+
+    assert np.array_equal(sem_t.subject_embed, np.array([0, 0.5]))
+    assert sem_t.subject_embed_count == 3
+
+    assert np.array_equal(sem_t.relation_embed, np.array([0, 0]))
+    assert sem_t.relation_embed_count == 3
+
+    assert np.array_equal(sem_t.object_embed, np.array([3, 5]))
+    assert sem_t.object_embed_count == 1
+
+    #test compare
+    t_2 = data_model.Triple("", "", "")
+    t_2.subject_embeds = [[np.array([0,1])], [np.array([-1,0]), np.array([1,0.5])]]
+    t_2.relation_embeds = [[np.array([3,4]), np.array([3,4])], [np.array([3,4])]]
+    t_2.object_embeds = [[np.array([-5,3])]]
+
+    #test analyse_embeddings
+    sem_t = data_model.Semantic_triple(t_2)
+
+    sem_t_2 = copy.deepcopy(data_model.Semantic_triple(t))
+
+    assert sem_t_2.compare(sem_t) ==  1

@@ -1,4 +1,5 @@
 import util
+import numpy as np
 
 class Question:
 
@@ -220,3 +221,57 @@ class Deepex_triple(Triple):
 
     self.score = score
     self.contrastive_dis = contrastive_dis
+
+class Semantic_triple():
+  def __init__(self, triple):
+
+    self.subject = triple.subject
+    self.relation = triple.relation
+    self.object = triple.object
+
+    self.subject_embed, self.subject_embed_count = self.analyse_embeddings(triple.subject_embeds)
+    self.relation_embed, self.relation_embed_count = self.analyse_embeddings(triple.relation_embeds)
+    self.object_embed, self.object_embed_count =  self.analyse_embeddings(triple.object_embeds)
+
+    self.matrix = None
+
+    if self.subject_embed_count != 0 and self.relation_embed_count != 0 and self.object_embed_count != 0:
+      self.matrix = np.row_stack((self.subject_embed, self.relation_embed, self.object_embed))
+
+  def analyse_embeddings(self, embeds):
+
+    #make a list of embeddings
+    L = []
+
+    for word in embeds:
+      for embed in word:
+        L.append(embed)
+
+    if len(L) == 0:
+      return None, 0
+
+    return np.mean(np.array(L), axis = 0), len(L)
+
+  def compare(self, semantic_triple):
+    
+    distances = np.zeros(3)
+
+    A = self.matrix
+    B = semantic_triple.matrix
+
+    if type(A) == np.ndarray and type(B) == np.ndarray:
+      for i in range(3):
+        
+        norm_A = np.linalg.norm(A[i, :])
+        norm_B = np.linalg.norm(B[i, :])
+
+        if norm_A == 0 or norm_B == 0:
+          distances[i] = 0
+          continue  
+        
+        #cosine similarity
+        distances[i] = np.dot(A[i, :], B[i, :])/(np.linalg.norm(A[i, :])*np.linalg.norm(B[i, :]))
+
+        print("i:{}, dot:{}, A:{}, B:{}".format(distances[i], np.dot(A[i, :], B[i, :]), A[i, :], B[i, :]))
+
+    return sum(distances)

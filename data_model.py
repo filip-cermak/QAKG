@@ -274,4 +274,6 @@ class Semantic_triple():
 
         #print("i:{}, dot:{}, A:{}, B:{}".format(distances[i], np.dot(A[i, :], B[i, :]), A[i, :], B[i, :]))
 
-    return sum(distances)
+      return sum(distances)
+    else:
+      return "undefined"

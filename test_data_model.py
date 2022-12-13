@@ -159,3 +159,7 @@ def test_semantic_triple():
     sem_t_2 = copy.deepcopy(data_model.Semantic_triple(t))
 
     assert sem_t_2.compare(sem_t) ==  1
+
+    sem_t_2.matrix = None
+
+    assert sem_t_2.compare(sem_t) == "undefined"

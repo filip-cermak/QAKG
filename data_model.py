@@ -272,6 +272,6 @@ class Semantic_triple():
         #cosine similarity
         distances[i] = np.dot(A[i, :], B[i, :])/(np.linalg.norm(A[i, :])*np.linalg.norm(B[i, :]))
 
-        print("i:{}, dot:{}, A:{}, B:{}".format(distances[i], np.dot(A[i, :], B[i, :]), A[i, :], B[i, :]))
+        #print("i:{}, dot:{}, A:{}, B:{}".format(distances[i], np.dot(A[i, :], B[i, :]), A[i, :], B[i, :]))
 
     return sum(distances)

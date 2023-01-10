@@ -3,6 +3,22 @@ import data_model
 import nltk.data
 import json
 
+"""
+Example usage:
+
+import pickle
+import data_model
+
+with open('output/question_list_filtered_coref_resolved_2022-10-22 17:20:53.876724_0.pkl', 'rb') as f:
+    q_list = pickle.load(f)
+
+
+import deepex
+
+out = deepex.prepare_for_deepex(q_list)
+deepex.export_dic_to_jsonl(out, True)
+
+"""
 def prepare_for_deepex(question_list):
     
     out = {}

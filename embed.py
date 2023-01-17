@@ -51,7 +51,7 @@ def add_embeddings_to_question_helper(q):
     enrich_triples(q.context_triples, chr_spans_with_embeddings)
 
     #q+a
-    chr_spans_with_embeddings = embed(q.context_cor_resolved)
+    chr_spans_with_embeddings = embed(q.question_with_answer_cor_resolved)
     enrich_triples(q.question_with_answer_triples, chr_spans_with_embeddings)
 
     #q+d - 0/1/2

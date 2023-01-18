@@ -304,7 +304,7 @@ class Semantic_triple():
     triples_with_distances_sorted = sorted(triples_with_distances, key= lambda x: x[0], reverse=True)
 
     try:
-      self.best_match_triple = triples_with_distances_sorted[0][1]
+      self.best_match_triple = triples_with_distances_sorted[0]
     except:
       self.best_match_triple = "matching unsuccessful"
 

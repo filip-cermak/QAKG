@@ -234,6 +234,7 @@ class Semantic_triple():
     self.object_embed, self.object_embed_count =  self.analyse_embeddings(triple.object_embeds)
 
     self.matrix = None
+    self.best_match_triple = None
 
     if self.subject_embed_count != 0 and self.relation_embed_count != 0 and self.object_embed_count != 0:
       self.matrix = np.row_stack((self.subject_embed, self.relation_embed, self.object_embed))
@@ -277,3 +278,21 @@ class Semantic_triple():
       return sum(distances)
     else:
       return "undefined"
+  
+  def pick_best_match(self, semantic_triple_list):
+    triples_with_distances = []
+
+    for triple in semantic_triple_list:
+      dist = self.compare(triple)
+      if dist != "undefined":
+        triples_with_distances.append((self.compare(triple), Primitive_Triple(triple)))
+
+    triples_with_distances_sorted = sorted(triples_with_distances, key= lambda x: x[0], reverse=True)
+
+    self.best_match_triple = triples_with_distances_sorted[0][1]
+
+class Primitive_Triple():
+  def __init__(self, triple):
+    self.subject = triple.subject
+    self.relation = triple.relation
+    self.object = triple.object

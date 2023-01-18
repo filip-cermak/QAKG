@@ -130,7 +130,7 @@ def test_eval():
 def test_semantic_triple():
 
     #mock input class
-    t = data_model.Triple("", "", "")
+    t = data_model.Triple("a", "b", "c")
     t.subject_embeds = [[np.array([0,1])], [np.array([-1,0]), np.array([1,0.5])]]
     t.relation_embeds = [[np.array([0,0]), np.array([0,0])], [np.array([0,0])]]
     t.object_embeds = [[np.array([3,5])]]
@@ -160,6 +160,29 @@ def test_semantic_triple():
 
     assert sem_t_2.compare(sem_t) ==  1
 
-    sem_t_2.matrix = None
+    sem_t_3 = data_model.Semantic_triple(data_model.Triple("", "", ""))
+    sem_t_3.matrix = sem_t_2.matrix*-1
 
-    assert sem_t_2.compare(sem_t) == "undefined"
+    assert sem_t_3.compare(sem_t) ==  -1
+
+    sem_t_4 = data_model.Semantic_triple(data_model.Triple("", "", ""))
+
+    assert sem_t_4.compare(sem_t) == "undefined"
+
+    sem_t_4.matrix = sem_t_2.matrix
+
+    #test pick_best_match
+    triple_list = [sem_t, sem_t_2, sem_t_3]
+
+    assert sem_t_4.best_match_triple == None
+    sem_t_4.pick_best_match(triple_list)
+
+    assert sem_t_4.best_match_triple.subject == 'a'
+    assert sem_t_4.best_match_triple.relation == 'b'
+    assert sem_t_4.best_match_triple.object == 'c'
+
+
+
+
+
+

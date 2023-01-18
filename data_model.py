@@ -56,6 +56,20 @@ class Question:
     print("Distractors - coref resolved")
     print(self.question_with_distractors_cor_resolved)
     print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+
+  def semantic_triple_conversion_and_matching(self):
+    self.context_triples = [Semantic_triple(t) for t in self.context_triples]
+    self.question_with_answer_triples = [Semantic_triple(t) for t in self.question_with_answer_triples]
+    
+    for i in range(3):
+      self.question_with_distractors_triples[i] = [Semantic_triple(t) for t in self.question_with_distractors_triples[i]]
+
+    for triple in self.question_with_answer_triples:
+      triple.pick_best_match(self.context_triples)
+
+    for i in range(3):
+      for triple in self.question_with_distractors_triples[i]:
+        triple.pick_best_match(self.context_triples)
   
 class Entry:
 
@@ -289,7 +303,10 @@ class Semantic_triple():
 
     triples_with_distances_sorted = sorted(triples_with_distances, key= lambda x: x[0], reverse=True)
 
-    self.best_match_triple = triples_with_distances_sorted[0][1]
+    try:
+      self.best_match_triple = triples_with_distances_sorted[0][1]
+    except:
+      self.best_match_triple = "matching unsuccessful"
 
 class Primitive_Triple():
   def __init__(self, triple):

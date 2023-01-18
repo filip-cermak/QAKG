@@ -306,7 +306,7 @@ class Semantic_triple():
     try:
       self.best_match_triple = triples_with_distances_sorted[0]
     except:
-      self.best_match_triple = "matching unsuccessful"
+      self.best_match_triple = (-10, 'matching unsuccessful')
 
 class Primitive_Triple():
   def __init__(self, triple):

@@ -28,7 +28,9 @@ def prepare_for_deepex(question_list):
     for id, q in zip(ids, question_list):
         out = prepare_for_deepex_helper(tok, q, id, out)
 
-    return out #format {sentence : [id1,id2...], ...}
+    sentences_with_ids = out
+
+    return sentences_with_ids #format {sentence : [id1,id2...], ...}
 
 def prepare_for_deepex_helper(tok, question, id, out):
 
@@ -69,7 +71,9 @@ def create_question_ids(question_list):
 
         out[q.id + "%" + str(ref[q.id])] = q
 
-    return out
+    ids_with_questions = out
+    
+    return ids_with_questions
 
 def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
     d_list = []
@@ -105,15 +109,17 @@ def json_to_triples(filename, sentences_with_ids):
     with open(filename, "r") as f:
         s = json.load(f)
 
-    if len(sentences_with_ids) != len(s):
-        raise ValueError        
+    #if len(sentences_with_ids) != len(s):
+    #    raise ValueError        
 
     for ids, key in zip(list(sentences_with_ids.keys()), list(s.keys())):
         triples[ids] = []
         for t in s[key]:
             triples[ids].append(json_triple_to_triple(t))
 
-    return triples #format {[id1, id2...] : [triple1, triple2...], ...}
+    ids_with_triples = triples
+
+    return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 
 def json_triple_to_triple(d):
     

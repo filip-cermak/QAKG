@@ -104,20 +104,24 @@ def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
                     counter += 1
 
 def json_to_triples(filename, sentences_with_ids):
-    triples = {}
-    # need to prove that 1d per input sentence
+    ids_with_triples = {}
+
     with open(filename, "r") as f:
         s = json.load(f)
 
-    #if len(sentences_with_ids) != len(s):
-    #    raise ValueError        
+    for key in list(s.keys()):
+        sentence = s[key][0]['sentence'][13:] # Deepex prepends a header to a sentence
 
-    for ids, key in zip(list(sentences_with_ids.keys()), list(s.keys())):
-        triples[ids] = []
-        for t in s[key]:
-            triples[ids].append(json_triple_to_triple(t))
+        try:
+            id_list = sentences_with_ids[sentence]
+        except:
+            print('Error: sentence could not be found')
+            continue
 
-    ids_with_triples = triples
+        ids_with_triples[id_list] = []
+
+        for triple in s[key]:
+            ids_with_triples[id_list].append(json_triple_to_triple(triple))
 
     return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 

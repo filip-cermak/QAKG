@@ -115,7 +115,7 @@ def json_to_triples(filename, sentences_with_ids):
         try:
             id_list = sentences_with_ids[sentence]
         except:
-            print('Error: sentence could not be found')
+            print('Error: sentence could not be found: {}'.format(sentence))
             continue
 
         ids_with_triples[tuple(id_list)] = []

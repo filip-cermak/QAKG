@@ -118,10 +118,10 @@ def json_to_triples(filename, sentences_with_ids):
             print('Error: sentence could not be found')
             continue
 
-        ids_with_triples[id_list] = []
+        ids_with_triples[tuple(id_list)] = []
 
         for triple in s[key]:
-            ids_with_triples[id_list].append(json_triple_to_triple(triple))
+            ids_with_triples[tuple(id_list)].append(json_triple_to_triple(triple))
 
     return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 

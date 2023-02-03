@@ -81,7 +81,7 @@ def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
     if not partition:
         with open("P0.jsonl", "w") as f:
             for i, s in enumerate(list(dic.keys())):
-                f.write(json.dumps({"id" : str(i), "title" : str(i), "text" : s})) # ???? title
+                f.write(json.dumps({"id" : str(dic[s]), "title" : str(dic[s]), "text" : s})) # ???? title
                 f.write('\n')
     else:
         sentences = list(dic.keys())
@@ -99,7 +99,7 @@ def export_dic_to_jsonl(dic, partition = False, partition_length = 1000):
         for i, l in enumerate(temp_list):
             with open("partitioned/" + str(i), "w") as f:            
                 for s in l:
-                    f.write(json.dumps({"id" : str(counter), "title" : str(counter), "text" : s}))
+                    f.write(json.dumps({"id" : str(dic[s]), "title" : str(dic[s]), "text" : s})) # ???? title
                     f.write('\n')
                     counter += 1
 

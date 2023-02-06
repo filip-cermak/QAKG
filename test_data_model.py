@@ -177,9 +177,10 @@ def test_semantic_triple():
     assert sem_t_4.best_match_triple == None
     sem_t_4.pick_best_match(triple_list)
 
-    assert sem_t_4.best_match_triple.subject == 'a'
-    assert sem_t_4.best_match_triple.relation == 'b'
-    assert sem_t_4.best_match_triple.object == 'c'
+    print(sem_t_4.best_match_triple)
+    assert sem_t_4.best_match_triple[1].subject == 'a'
+    assert sem_t_4.best_match_triple[1].relation == 'b'
+    assert sem_t_4.best_match_triple[1].object == 'c'
 
 
 

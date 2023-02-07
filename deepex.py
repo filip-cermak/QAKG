@@ -220,7 +220,14 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
     deepex_triple.object_embeds = object_embeds
     deepex_triple.relation_embeds = relation_embeds
 
-    return deepex_triple 
+def enrich_deepex_questions_with_embeddings(q):
+    [enrich_deepex_triple_with_embeddings(t) for t in q.context_triples]
+    [enrich_deepex_triple_with_embeddings(t) for t in q.question_with_answer_triples]
+
+    for t_list in q.question_with_distractors_triples:
+        [enrich_deepex_triple_with_embeddings(t) for t in t_list]
+
+
 
 
 

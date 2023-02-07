@@ -141,7 +141,7 @@ def json_to_questions_with_triples(filename, ids_with_questions):
 
         list_of_ids = list(ids) 
 
-        for single_id in ids:
+        for single_id in list_of_ids:
             decode_deepex_helper(single_id, triple_list, ids_with_questions)
 
     return ids_with_questions

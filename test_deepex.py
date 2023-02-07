@@ -157,6 +157,10 @@ def test_json_triple_to_triple():
     
     deepex_triple = deepex.json_triple_to_triple(triple)
 
+def test_enrich_deepex_triple_with_embeddings():
+    #with open('test_files/')
+    pass
+
 def test_decode_deepex():
     #TODO
     pass

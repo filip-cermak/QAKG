@@ -4,6 +4,9 @@ import nltk.data
 import json
 import ast
 
+import embed
+from sentence_embed import sentence_embed
+
 """
 Example usage:
 
@@ -199,4 +202,28 @@ def decode_deepex_helper(id, triples, ids_with_questions):
         question.question_with_distractors_triples[2].extend(triples)
 
 
-#def enrich_deepex_triple_with_embeddings(deepex_triple):
+def enrich_deepex_triple_with_embeddings(deepex_triple):
+
+    chr_spans_with_embeds = embed.embed(deepex_triple.sentence)
+
+    subject_embeds_chr_spans = embed.chr_spn_matcher(deepex_triple.subject_char_span,
+                                             list(chr_spans_with_embeds.keys()))
+
+    object_embeds_chr_spans = embed.chr_spn_matcher(deepex_triple.object_char_span,
+                                             list(chr_spans_with_embeds.keys()))
+
+    subject_embeds = [chr_spans_with_embeds[x] for x in subject_embeds_chr_spans]
+    object_embeds = [chr_spans_with_embeds[x] for x in object_embeds_chr_spans]
+    relation_embeds = sentence_embed(deepex_triple.sentence)
+
+    deepex_triple.subject_embeds = subject_embeds
+    deepex_triple.object_embeds = object_embeds
+    deepex_triple.relation_embeds = relation_embeds
+
+    return deepex_triple 
+
+
+
+
+
+

@@ -247,7 +247,8 @@ class Deepex_triple(Triple):
     self.contrastive_dis = contrastive_dis
     self.subject_char_span = subject_char_span
     self.object_char_span = object_char_span
-  
+
+    self.closest_triple = None
 
 class Semantic_triple():
   def __init__(self, triple):

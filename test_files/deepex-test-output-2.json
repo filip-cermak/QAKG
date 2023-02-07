@@ -1,0 +1,1128 @@
+{
+    "0000000000000000000000000000000000001736": [
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": "however , has",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012703088460409124,
+            "offset": 0,
+            "contrastive_dis": 0.14690807461738586
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": ", however , has",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012825501537541063,
+            "offset": 0,
+            "contrastive_dis": 0.14778169989585876
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": "however , has",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012703088460409124,
+            "offset": 0,
+            "contrastive_dis": 0.14812326431274414
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": ", however , has",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012825501537541063,
+            "offset": 0,
+            "contrastive_dis": 0.14815297722816467
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": ", has",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012712093416410379,
+            "offset": 0,
+            "contrastive_dis": 0.15125972032546997
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": ", has",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.012712093416410379,
+            "offset": 0,
+            "contrastive_dis": 0.15388602018356323
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": ", however ,",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.00856651074718684,
+            "offset": 0,
+            "contrastive_dis": 0.15757013857364655
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": "however",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.010034906308111899,
+            "offset": 0,
+            "contrastive_dis": 0.1584744155406952
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": "has",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.014474681445530482,
+            "offset": 0,
+            "contrastive_dis": 0.1586725264787674
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": ", however ,",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.00856651074718684,
+            "offset": 0,
+            "contrastive_dis": 0.1587653011083603
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": "has",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.014474681445530482,
+            "offset": 0,
+            "contrastive_dis": 0.15899895131587982
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": "however",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.010034906308111899,
+            "offset": 0,
+            "contrastive_dis": 0.15908265113830566
+        },
+        {
+            "subject": "My Cousin",
+            "subject_char_span": [
+                0,
+                9
+            ],
+            "relation": "bad",
+            "object": "A Very Bad Living Habit",
+            "object_char_span": [
+                24,
+                47
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.009246379602700472,
+            "offset": 0,
+            "contrastive_dis": 0.1669006198644638
+        },
+        {
+            "subject": "A Very Bad Living Habit",
+            "subject_char_span": [
+                24,
+                47
+            ],
+            "relation": "bad",
+            "object": "My Cousin",
+            "object_char_span": [
+                0,
+                9
+            ],
+            "sentence": "$input_txt:$ My cousin, however, has a very bad living habit.",
+            "score": 0.009246379602700472,
+            "offset": 0,
+            "contrastive_dis": 0.16748152673244476
+        }
+    ],
+    "0000000000000000000000000000000000001540": [
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "barn give up the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.048352271149104294,
+            "offset": 0,
+            "contrastive_dis": 0.11763904988765717
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "the barn give up the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04145975855107491,
+            "offset": 0,
+            "contrastive_dis": 0.11789653450250626
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "the barn give up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.041329702051977314,
+            "offset": 0,
+            "contrastive_dis": 0.11974117904901505
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "barn give up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.048352271149104294,
+            "offset": 0,
+            "contrastive_dis": 0.1200767531991005
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give up the reward",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.025494787283241747,
+            "offset": 0,
+            "contrastive_dis": 0.1202259361743927
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up the reward of",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04248271162875674,
+            "offset": 0,
+            "contrastive_dis": 0.12051453441381454
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "barn give up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.044519407053788505,
+            "offset": 0,
+            "contrastive_dis": 0.12069348990917206
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "the barn give up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04145975855107491,
+            "offset": 0,
+            "contrastive_dis": 0.12081526964902878
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up the reward",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04217947674915194,
+            "offset": 0,
+            "contrastive_dis": 0.12241552025079727
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "the barn give up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.041329702051977314,
+            "offset": 0,
+            "contrastive_dis": 0.12272864580154419
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "barn give up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.044519407053788505,
+            "offset": 0,
+            "contrastive_dis": 0.12290309369564056
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give up the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05139345861971378,
+            "offset": 0,
+            "contrastive_dis": 0.12331241369247437
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "give up the reward",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.025494787283241747,
+            "offset": 0,
+            "contrastive_dis": 0.12373821437358856
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give up the",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04318463976960629,
+            "offset": 0,
+            "contrastive_dis": 0.12395211309194565
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "up the reward of",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04248271162875674,
+            "offset": 0,
+            "contrastive_dis": 0.12500925362110138
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "give up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05139345861971378,
+            "offset": 0,
+            "contrastive_dis": 0.12583181262016296
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.041965063518056504,
+            "offset": 0,
+            "contrastive_dis": 0.12677353620529175
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "up the reward",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04217947674915194,
+            "offset": 0,
+            "contrastive_dis": 0.1267894208431244
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "give up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04318463976960629,
+            "offset": 0,
+            "contrastive_dis": 0.12760813534259796
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give up",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.030136141227558255,
+            "offset": 0,
+            "contrastive_dis": 0.12779389321804047
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.047496581263840196,
+            "offset": 0,
+            "contrastive_dis": 0.12810587882995605
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "give up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.041965063518056504,
+            "offset": 0,
+            "contrastive_dis": 0.1289718896150589
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up the",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05269001015963463,
+            "offset": 0,
+            "contrastive_dis": 0.1293531060218811
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.047496581263840196,
+            "offset": 0,
+            "contrastive_dis": 0.1296432465314865
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "give up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.030136141227558255,
+            "offset": 0,
+            "contrastive_dis": 0.13112866878509521
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03939662571065128,
+            "offset": 0,
+            "contrastive_dis": 0.131968155503273
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "up the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05269001015963463,
+            "offset": 0,
+            "contrastive_dis": 0.13258594274520874
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03939662571065128,
+            "offset": 0,
+            "contrastive_dis": 0.13311323523521423
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "reward",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.022648454333345096,
+            "offset": 0,
+            "contrastive_dis": 0.13311879336833954
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "up",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04122207723557949,
+            "offset": 0,
+            "contrastive_dis": 0.13379329442977905
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "reward",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.022648454333345096,
+            "offset": 0,
+            "contrastive_dis": 0.13585522770881653
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "reward of 100",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.02173787785264162,
+            "offset": 0,
+            "contrastive_dis": 0.13652051985263824
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "up",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.04122207723557949,
+            "offset": 0,
+            "contrastive_dis": 0.13700881600379944
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "reward of 100",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.02173787785264162,
+            "offset": 0,
+            "contrastive_dis": 0.13739757239818573
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "give",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.02000746037811041,
+            "offset": 0,
+            "contrastive_dis": 0.1396767795085907
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "100",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.027162739386161167,
+            "offset": 0,
+            "contrastive_dis": 0.14012427628040314
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "100",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.027162739386161167,
+            "offset": 0,
+            "contrastive_dis": 0.14098399877548218
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "give",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.02000746037811041,
+            "offset": 0,
+            "contrastive_dis": 0.14155003428459167
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "the",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03898625429719686,
+            "offset": 0,
+            "contrastive_dis": 0.14192093908786774
+        },
+        {
+            "subject": "100 Dollars",
+            "subject_char_span": [
+                34,
+                45
+            ],
+            "relation": "the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05310763232409954,
+            "offset": 0,
+            "contrastive_dis": 0.14192305505275726
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.05310763232409954,
+            "offset": 0,
+            "contrastive_dis": 0.1435534954071045
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "the",
+            "object": "100 Dollars",
+            "object_char_span": [
+                34,
+                45
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03898625429719686,
+            "offset": 0,
+            "contrastive_dis": 0.1448756456375122
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "give up",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.042718784207952956,
+            "offset": 0,
+            "contrastive_dis": 0.14977462589740753
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "give up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.042718784207952956,
+            "offset": 0,
+            "contrastive_dis": 0.15116052329540253
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "up",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.049918436105289156,
+            "offset": 0,
+            "contrastive_dis": 0.1609746366739273
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "barn",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.037307395289341606,
+            "offset": 0,
+            "contrastive_dis": 0.1612638682126999
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "barn",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.037307395289341606,
+            "offset": 0,
+            "contrastive_dis": 0.16185344755649567
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "give",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.031685853066543736,
+            "offset": 0,
+            "contrastive_dis": 0.16248475015163422
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "up",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.049918436105289156,
+            "offset": 0,
+            "contrastive_dis": 0.1627129316329956
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "give",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.031685853066543736,
+            "offset": 0,
+            "contrastive_dis": 0.1634058803319931
+        },
+        {
+            "subject": "The Reward",
+            "subject_char_span": [
+                20,
+                30
+            ],
+            "relation": "the",
+            "object": "The Barn",
+            "object_char_span": [
+                3,
+                11
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03701858429445161,
+            "offset": 0,
+            "contrastive_dis": 0.1706872433423996
+        },
+        {
+            "subject": "The Barn",
+            "subject_char_span": [
+                3,
+                11
+            ],
+            "relation": "the",
+            "object": "The Reward",
+            "object_char_span": [
+                20,
+                30
+            ],
+            "sentence": "$input_txt:$ So the barn give up the reward of 100 dollars one by one.",
+            "score": 0.03701858429445161,
+            "offset": 0,
+            "contrastive_dis": 0.17214494943618774
+        }
+    ]
+}

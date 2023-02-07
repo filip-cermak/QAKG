@@ -2,6 +2,7 @@ import data_model
 
 import nltk.data
 import json
+import ast
 
 """
 Example usage:
@@ -138,8 +139,7 @@ def json_to_questions_with_triples(filename, ids_with_questions):
             triple_list.append(json_triple_to_triple(triple))
 
         #now assing these tripels to the ids_with_questions
-
-        list_of_ids = list(ids) 
+        list_of_ids = ast.literal_eval(ids)
 
         for single_id in list_of_ids:
             decode_deepex_helper(single_id, triple_list, ids_with_questions)

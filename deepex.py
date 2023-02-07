@@ -150,8 +150,10 @@ def json_triple_to_triple(d):
     
     triple = data_model.Deepex_triple(
         d['subject'],
+        d['subject_char_span'],
         d['relation'],
         d['object'],
+        d['object_char_span'],
         d['sentence'][13:], # Deepex prepends a header to a sentence
         d['score'],
         d['contrastive_dis']
@@ -195,3 +197,6 @@ def decode_deepex_helper(id, triples, ids_with_questions):
         question.question_with_distractors_triples[1].extend(triples)
     elif part_of_question == 'qnd-2':
         question.question_with_distractors_triples[2].extend(triples)
+
+
+#def enrich_deepex_triple_with_embeddings(deepex_triple):

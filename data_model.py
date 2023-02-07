@@ -230,12 +230,24 @@ class Triple: #todo - make a base Triple class and child triple classes
     self.object_tokens = None
 
 class Deepex_triple(Triple):
-  def __init__(self, subject, relation, object, sentence, score, contrastive_dis):
+  def __init__( self, 
+                subject,
+                subject_char_span, 
+                relation, 
+                object,
+                object_char_span, 
+                sentence, 
+                score, 
+                contrastive_dis):
+  
     Triple.__init__(self, subject, relation, object, 1)
 
     self.sentence = sentence
     self.score = score
     self.contrastive_dis = contrastive_dis
+    self.subject_char_span = subject_char_span
+    self.object_char_span = object_char_span
+  
 
 class Semantic_triple():
   def __init__(self, triple):

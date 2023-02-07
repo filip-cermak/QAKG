@@ -125,12 +125,34 @@ def json_to_triples(filename, sentences_with_ids):
 
     return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 
+def json_to_questions_with_triples(filename, ids_with_questions):
+    #this version has global sentence IDs included in JSON files
+
+    with open(filename, "r") as f:
+        s = json.load(f)
+
+    for ids in list(s.keys()):
+        triple_list = []
+    
+        for triple in s[ids]:
+            triple_list.append(json_triple_to_triple(triple))
+
+        #now assing these tripels to the ids_with_questions
+
+        list_of_ids = list(ids) 
+
+        for single_id in ids:
+            decode_deepex_helper(single_id, triple_list, ids_with_questions)
+
+    return ids_with_questions
+
 def json_triple_to_triple(d):
     
     triple = data_model.Deepex_triple(
         d['subject'],
         d['relation'],
         d['object'],
+        d['sentence'][13:], # Deepex prepends a header to a sentence
         d['score'],
         d['contrastive_dis']
     )

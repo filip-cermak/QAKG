@@ -1,4 +1,6 @@
 from asynchat import simple_producer
+import pickle
+import lzma
 
 
 def intersect(a, b):
@@ -161,3 +163,11 @@ def summarize_list(l):
             out[el] += 1
 
     return out
+
+def partition_and_save(list_of_objects, objects_per_partition, folder):
+
+    n = len(list_of_objects)//objects_per_partition
+
+    for i in range(n):
+        with lzma.open(folder + "/" + str(i) + ".pkl", "wb") as f:
+            pickle.dump(list_of_objects[i*objects_per_partition:(i+1)*objects_per_partition], f)

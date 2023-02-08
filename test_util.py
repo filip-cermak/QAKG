@@ -1,5 +1,6 @@
 import util
 import data_model
+import os
 
 def test_intersect():
 
@@ -118,3 +119,17 @@ def test_summarize_list():
     input = [1, 1, "bcd", 1, "a", 1, "a", "a", "bcd"]
 
     assert {1 : 4, "bcd" : 2, "a" : 3} == util.summarize_list(input)
+
+def test_partition_save():
+    os.makedirs('./test_folder')
+    util.partition_and_save(list(range(1000)), 99, 'test_folder')
+    os.system('rm -rf ./test_folder')
+
+    """
+        import lzma
+        import pickle
+
+        with lzma.open('test_folder/1.pkl', 'rb') as f:
+            test = pickle.load(f)
+            print(test)
+    """

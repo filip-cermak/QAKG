@@ -171,3 +171,18 @@ def partition_and_save(list_of_objects, objects_per_partition, folder):
     for i in range(n):
         with lzma.open(folder + "/" + str(i) + ".pkl", "wb") as f:
             pickle.dump(list_of_objects[i*objects_per_partition:(i+1)*objects_per_partition], f)
+
+def apply_function_to_all_question_triples(q, fn):
+
+    """
+    print("start")
+    print("Triple counts, context: {}, Q+A: {}".format(len(q.context_triples), len(q.question_with_answer_triples)))
+    print("{}, {}, {}".format(len(q.question_with_distractors_triples[0]), len(q.question_with_distractors_triples[1]), len(q.question_with_distractors_triples[2])))
+    """
+    
+    [fn(t) for t in q.context_triples]
+    [fn(t) for t in q.question_with_answer_triples]
+
+    for t_list in q.question_with_distractors_triples:
+        [fn(t) for t in t_list]
+    print("end")

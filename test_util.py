@@ -133,3 +133,29 @@ def test_partition_save():
             test = pickle.load(f)
             print(test)
     """
+
+def test_apply_function_to_all_question_triples():
+
+    mem = []
+
+    def helper_fn(t):
+        mem.append(t.subject)
+
+    q = data_model.Question("", "", "", "", "")
+
+    t = []
+    t.append(data_model.Triple("0", "", ""))
+    t.append(data_model.Triple("1", "", ""))
+    t.append(data_model.Triple("2", "", ""))
+    t.append(data_model.Triple("3", "", ""))
+    t.append(data_model.Triple("4", "", ""))
+
+    q.context_triples = [t[0]]
+    q.question_with_answer_triples = [t[1]]
+    q.question_with_distractors_triples = [[t[2]], [t[3]], [t[4]]] 
+
+    util.apply_function_to_all_question_triples(q, helper_fn)
+
+    assert mem == ['0', '1', '2', '3', '4']
+
+    

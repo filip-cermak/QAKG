@@ -5,6 +5,7 @@ import json
 import ast
 
 import embed
+import util
 from sentence_embed import sentence_embed
 
 """
@@ -137,9 +138,15 @@ def json_to_questions_with_triples(filename, ids_with_questions):
 
     for ids in list(s.keys()):
         triple_list = []
+
+        #s[ids] = sorted(s[ids], key = lambda x: x["score"], reverse=True)[:2]
     
+        # take only 2 top triple acording to the contrastive loss
+        s[ids] = s[ids][:2]
+
+        # turn json triple to object, also add embeddings
         for triple in s[ids]:
-            triple_list.append(json_triple_to_triple(triple))
+            triple_list.append(enrich_deepex_triple_with_embeddings(json_triple_to_triple(triple)))
 
         #now assing these tripels to the ids_with_questions
         list_of_ids = ast.literal_eval(ids)
@@ -201,7 +208,6 @@ def decode_deepex_helper(id, triples, ids_with_questions):
     elif part_of_question == 'qnd-2':
         question.question_with_distractors_triples[2].extend(triples)
 
-
 def enrich_deepex_triple_with_embeddings(deepex_triple):
 
     chr_spans_with_embeds = embed.embed(deepex_triple.sentence)
@@ -221,12 +227,7 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
     deepex_triple.relation_embeds = relation_embeds
 
 def enrich_deepex_questions_with_embeddings(q):
-    [enrich_deepex_triple_with_embeddings(t) for t in q.context_triples]
-    [enrich_deepex_triple_with_embeddings(t) for t in q.question_with_answer_triples]
-
-    for t_list in q.question_with_distractors_triples:
-        [enrich_deepex_triple_with_embeddings(t) for t in t_list]
-
+    util.apply_function_to_all_question_triples(q, enrich_deepex_triple_with_embeddings)
 
 
 

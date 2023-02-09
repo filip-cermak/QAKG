@@ -227,6 +227,8 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
     deepex_triple.object_embeds = object_embeds
     deepex_triple.relation_embeds = relation_embeds
 
+    return deepex_triple
+
 def enrich_deepex_questions_with_embeddings(q):
     util.apply_function_to_all_question_triples(q, enrich_deepex_triple_with_embeddings)
 

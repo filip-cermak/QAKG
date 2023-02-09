@@ -3,6 +3,7 @@ import data_model
 import nltk.data
 import json
 import ast
+from tqdm import tqdm
 
 import embed
 import util
@@ -136,7 +137,7 @@ def json_to_questions_with_triples(filename, ids_with_questions):
     with open(filename, "r") as f:
         s = json.load(f)
 
-    for ids in list(s.keys()):
+    for ids in tqdm(list(s.keys())):
         triple_list = []
 
         #s[ids] = sorted(s[ids], key = lambda x: x["score"], reverse=True)[:2]

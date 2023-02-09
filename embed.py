@@ -18,17 +18,14 @@ def embed(s):
 
     for i, e in enumerate(embeddings[0]):
 
-        try:
-            if tokenizer(s).token_to_chars(i) == None: 
-                # eg Bert returns first and last token which we do not want
-                # and have no char spans
-                continue
-            else:
-                start = tokenizer(s).token_to_chars(i).start
-                end = tokenizer(s).token_to_chars(i).end
-                chr_spans_with_embeddings[(start, end)] = e
-        except:
-            print("Error occured when embedding: {}".format(s))
+        if tokenizer(s).token_to_chars(i) == None: 
+            # eg Bert returns first and last token which we do not want
+            # and have no char spans
+            continue
+        else:
+            start = tokenizer(s).token_to_chars(i).start
+            end = tokenizer(s).token_to_chars(i).end
+            chr_spans_with_embeddings[(start, end)] = e
 
     return chr_spans_with_embeddings
 

@@ -29,7 +29,6 @@ def embed(s):
                 chr_spans_with_embeddings[(start, end)] = e
         except:
             print("Error occured when embedding: {}".format(s))
-            print(embeddings[0])
 
     return chr_spans_with_embeddings
 

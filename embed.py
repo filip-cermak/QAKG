@@ -17,15 +17,20 @@ def embed(s):
     chr_spans_with_embeddings = {}
 
     for i, e in enumerate(embeddings[0]):
-        if tokenizer(s).token_to_chars(i) == None: 
-            # eg Bert returns first and last token which we do not want
-            # and have no char spans
-            continue
-        else:
-            start = tokenizer(s).token_to_chars(i).start
-            end = tokenizer(s).token_to_chars(i).end
-            chr_spans_with_embeddings[(start, end)] = e
-    
+
+        try:
+            if tokenizer(s).token_to_chars(i) == None: 
+                # eg Bert returns first and last token which we do not want
+                # and have no char spans
+                continue
+            else:
+                start = tokenizer(s).token_to_chars(i).start
+                end = tokenizer(s).token_to_chars(i).end
+                chr_spans_with_embeddings[(start, end)] = e
+        except:
+            print("Error occured when embedding: {}".format(s))
+            print(embeddings[0])
+
     return chr_spans_with_embeddings
 
 def chr_spn_matcher(ref_chr_spn, list_of_chr_spns):

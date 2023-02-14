@@ -4,6 +4,7 @@ import nltk.data
 import json
 import ast
 from tqdm import tqdm
+import numpy as np
 
 import embed
 import util
@@ -227,13 +228,56 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
     deepex_triple.object_embeds = object_embeds
     deepex_triple.relation_embeds = relation_embeds
 
+    if average_embeds(subject_embeds)[1] == 0 or average_embeds(object_embeds)[1] == 0:
+        deepex_triple = None
+    else:
+        deepex_triple.matrix = [average_embeds(subject_embeds)[0], relation_embeds, average_embeds(object_embeds)[0]]
+
     return deepex_triple
 
 def enrich_deepex_questions_with_embeddings(q):
     util.apply_function_to_all_question_triples(q, enrich_deepex_triple_with_embeddings)
 
+def average_embeds(embeds):
+    # no structure in the embeds array!
+    if len(embeds) == 0:
+        return None, 0
 
+    return (np.mean(np.array(embeds), axis = 0), len(embeds))
 
+def resolve_question(q):
+    ct = q.context_triples
+
+    [find_match(t, ct) for t in q.question_with_answer_triples]
+
+    for t_list in q.question_with_distractors_triples:
+        [find_match(t, ct) for t in t_list]
+    print("end")
+
+def find_match(triple, context_triples):
+
+    closest = -3
+    for triple_b in context_triples:
+        #print(triple.matrix)
+        #print(dst(triple, triple_b))
+        if dst(triple, triple_b) > closest:
+            triple.closest_triple = triple_b
+            triple.closest_triple_dst = dst(triple, triple_b)
+            closest = triple.closest_triple_dst
+
+def dst(t_a, t_b):
+    #add resulting 3 cos distances
+    
+    if t_a.matrix == None or t_b.matrix == None: 
+        print("Flag triggered")
+        return -3
+
+    out = 0
+
+    for i in range(3):
+        out += np.dot(t_a.matrix[i], t_b.matrix[i])/(np.linalg.norm(t_a.matrix[i])*np.linalg.norm(t_b.matrix[i]))
+
+    return out
 
 
 

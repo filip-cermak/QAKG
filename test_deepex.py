@@ -3,6 +3,9 @@ import data_model
 import nltk.data
 import os
 import json
+import numpy as np
+import lzma
+import pickle
 
 
 def test_create_question_ids():
@@ -190,3 +193,92 @@ def test_decode_deepex_helper():
     deepex.decode_deepex_helper(id, triples, ids_with_questions)
 
     """
+
+def test_average_embeds():
+    #test compare
+    t_2 = data_model.Deepex_triple("", "", "", "", "", "", "", "")
+    t_2.subject_embeds = [np.array([0,1]), np.array([-1,0]), np.array([1,0.5])]
+    t_2.relation_embeds = [np.array([3,4]), np.array([3,4]), np.array([3,4])]
+    t_2.object_embeds = [np.array([-5,3])]
+
+    assert np.array_equal(deepex.average_embeds(t_2.subject_embeds)[0], np.array([0,0.5]))
+    assert deepex.average_embeds(t_2.subject_embeds)[1] == 3
+
+    assert np.array_equal(deepex.average_embeds(t_2.relation_embeds)[0], np.array([3,4]))
+    assert deepex.average_embeds(t_2.relation_embeds)[1] == 3
+
+    assert np.array_equal(deepex.average_embeds(t_2.object_embeds)[0], np.array([-5,3]))
+    assert deepex.average_embeds(t_2.object_embeds)[1] == 1
+
+def test_resolve_question():
+    pass
+
+def test_dst():
+    # test on real data with one triple containing None
+    with lzma.open("./test_files/deepex_match.pkl", "rb") as f:
+        q_list = pickle.load(f)
+
+    t_1 = q_list[0].context_triples[0]
+    t_2 = q_list[0].question_with_answer_triples[0]
+    #t_1.matrix[0] = np.nan
+
+    #assert deepex.dst(t_2, t_1) == -3
+    #assert deepex.dst(t_1, t_2) == -3
+
+    t_1.matrix[0] = t_2.matrix[0] 
+
+    assert deepex.dst(t_1, t_2) != -3
+    assert deepex.dst(t_2, t_1) != -3
+
+    # tests on mocked triples
+    t_1.matrix = [np.array([1, 2, 3]), np.array([0, 0, 0, 1]), np.array([3])]
+    t_2.matrix = [np.array([5, 6, 7]), np.array([1, 2, 3 ,4]), np.array([4])]
+
+    correct_dist = 0.9683 + 0.730 + 1
+    assert abs(deepex.dst(t_1, t_2) - correct_dist) < 0.01 
+
+    #t_2.matrix = [np.nan, np.array([1, 2, 3 ,4]), np.array([4])]
+    #assert deepex.dst(t_2, t_1) == -3
+
+def test_find_match():
+
+    triple_set = []
+
+    for i in range(3):
+        triple_set.append(data_model.Deepex_triple("", "", "", "", "", "", "", ""))
+
+    triple_set[0].matrix = [np.array([1, 2, 3]), np.array([0, 0, 0, 1]), np.array([3])]
+    triple_set[1].matrix = [np.array([1, 2, 3]), np.array([0, 10, 0, 1]), np.array([3])]
+    triple_set[2].matrix = None
+    
+    ref_triple = data_model.Deepex_triple("", "", "", "", "", "", "", "")
+    ref_triple.matrix = [np.array([1, 2, 3]), np.array([0, 0, 0, 1]), np.array([3])]
+    
+    deepex.find_match(ref_triple, triple_set)
+
+    assert ref_triple.closest_triple_dst == 3
+
+def test_resolve_question():
+    q = data_model.Question("", "", "", "", "")
+
+    triple_set = []
+    for i in range(3):
+        triple_set.append(data_model.Deepex_triple("", "", "", "", "", "", "", ""))
+
+    triple_set[0].matrix = [np.array([1, 2, 3]), np.array([0, 0, 0, 1]), np.array([3])]
+    triple_set[1].matrix = [np.array([1, 2, 3]), np.array([0, 10, 0, 1]), np.array([3])]
+    triple_set[2].matrix = None
+
+    q.context_triples = triple_set
+
+    ref_triple = data_model.Deepex_triple("", "", "", "", "", "", "", "")
+    ref_triple.matrix = [np.array([1, 2, 3]), np.array([0, 0, 0, 1]), np.array([3])]
+
+    assert ref_triple.closest_triple_dst == None
+
+    q.question_with_answer_triples = [ref_triple]
+    q.question_with_distractors_triples = []
+
+    deepex.resolve_question(q)
+
+    assert ref_triple.closest_triple_dst == 3

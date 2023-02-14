@@ -249,6 +249,8 @@ class Deepex_triple(Triple):
     self.object_char_span = object_char_span
 
     self.closest_triple = None
+    self.closest_triple_dst = None
+    self.matrix = None
 
 class Semantic_triple():
   def __init__(self, triple):

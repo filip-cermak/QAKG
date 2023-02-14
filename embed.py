@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModel, pipeline
 from tqdm import tqdm
+import numpy as np
 
 
 model_name = "bert-base-cased"
@@ -25,7 +26,7 @@ def embed(s):
         else:
             start = tokenizer(s).token_to_chars(i).start
             end = tokenizer(s).token_to_chars(i).end
-            chr_spans_with_embeddings[(start, end)] = e
+            chr_spans_with_embeddings[(start, end)] = np.asarray(e)
 
     return chr_spans_with_embeddings
 

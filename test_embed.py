@@ -100,6 +100,4 @@ def test_add_embeddings_to_questions_helper():
     assert q.question_with_answer_triples[1].object_embeds != [[]]
 
 def test_embed():
-    out = embed.embed('A bird in the tree is watching Han Mei and Lu Lu.')
-    
-    assert list(out.keys()) = 
+    out = list(embed.embed('A bird in the tree is watching Han Mei and Lu Lu.').keys())

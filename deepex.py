@@ -229,7 +229,7 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
     deepex_triple.relation_embeds = relation_embeds
 
     if average_embeds(subject_embeds)[1] == 0 or average_embeds(object_embeds)[1] == 0:
-        deepex_triple = None
+        deepex_triple.matrix = None
     else:
         deepex_triple.matrix = [average_embeds(subject_embeds)[0], relation_embeds, average_embeds(object_embeds)[0]]
 
@@ -248,11 +248,16 @@ def average_embeds(embeds):
 def resolve_question(q):
     ct = q.context_triples
 
+    if q.question_with_answer_triples == None:
+        q.question_with_answer_triples = []
+
     [find_match(t, ct) for t in q.question_with_answer_triples]
+
+    if q.question_with_distractors_triples == None:
+        q.question_with_distractors_triples = [[], [], []]
 
     for t_list in q.question_with_distractors_triples:
         [find_match(t, ct) for t in t_list]
-    print("end")
 
 def find_match(triple, context_triples):
 

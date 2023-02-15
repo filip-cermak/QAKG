@@ -159,3 +159,6 @@ def test_apply_function_to_all_question_triples():
     assert mem == ['0', '1', '2', '3', '4']
 
     
+def test_prettify_json():
+    util.prettify_json("./test_files/1.json")
+    os.remove("./test_files/1_pretty.json")

@@ -1,6 +1,7 @@
 from asynchat import simple_producer
 import pickle
 import lzma
+import json
 
 
 def intersect(a, b):
@@ -186,3 +187,13 @@ def apply_function_to_all_question_triples(q, fn):
     for t_list in q.question_with_distractors_triples:
         [fn(t) for t in t_list]
     print("end")
+
+def prettify_json(filename):
+    
+    with open(filename, "r") as f:
+        s = json.load(f)
+
+    l = filename[0:-5]
+
+    with open(filename[0:-5] + "_pretty" + ".json", 'w') as f:
+        json.dump(s, f, indent=4)

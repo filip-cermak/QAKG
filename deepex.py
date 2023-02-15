@@ -159,13 +159,17 @@ def json_to_questions_with_triples(filename, ids_with_questions):
     return ids_with_questions
 
 def json_triple_to_triple(d):
+
+    o = d['offset']
+    subject_char_span = [d['subject_char_span'][0] - o, d['subject_char_span'][1] - o]
+    object_char_span = [d['object_char_span'][0] - o, d['object_char_span'][1] - o]
     
     triple = data_model.Deepex_triple(
         d['subject'],
-        d['subject_char_span'],
+        subject_char_span,
         d['relation'],
         d['object'],
-        d['object_char_span'],
+        object_char_span,
         d['sentence'][13:], # Deepex prepends a header to a sentence
         d['score'],
         d['contrastive_dis']

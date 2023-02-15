@@ -175,8 +175,8 @@ def json_triple_to_triple(d):
         d['contrastive_dis']
     )
 
-    triple.subject_words = [d['subject_char_span']]
-    triple.object_words = [d['object_char_span']]
+    triple.subject_words = [subject_char_span]
+    triple.object_words = [object_char_span]
 
     return triple
 

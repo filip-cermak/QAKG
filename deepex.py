@@ -288,6 +288,27 @@ def dst(t_a, t_b):
 
     return out
 
+def answer_question(q, threshold):
+    # returns  1 if answered correctly
+    # returns  0 if answered correctly
+    # returns -1 if answered correctly
 
+    # get closest triple to Q+A triples
+    qna_max = max([t.closest_triple_dst for t in q.question_with_answer_triples])
 
+    # get closest triple to Q+D triples
+    qnd_max_list = [0,0,0]
 
+    for i in range(3):
+        qnd_max_list[i] = max([t.closest_triple_dst for t in q.question_with_distractors_triples[i]])
+
+    qnd_max = max(qnd_max_list)
+
+    if qna_max > qnd_max and qna_max > threshold:
+        return 1
+    
+    if qnd_max > qna_max and qnd_max > threshold:
+        return 0
+    
+    return -1
+    

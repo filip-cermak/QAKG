@@ -282,3 +282,11 @@ def test_resolve_question():
     deepex.resolve_question(q)
 
     assert ref_triple.closest_triple_dst == 3
+
+def test_answer_question():
+
+    with lzma.open("./test_files/0.pkl", "rb") as f:
+        q_list = pickle.load(f)
+    #load single question
+
+    [deepex.answer_question(q, 2.7) for q in q_list]

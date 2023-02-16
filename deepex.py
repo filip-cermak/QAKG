@@ -294,21 +294,47 @@ def answer_question(q, threshold):
     # returns -1 if answered correctly
 
     # get closest triple to Q+A triples
-    qna_max = max([t.closest_triple_dst for t in q.question_with_answer_triples])
+
+    if len(q.question_with_answer_triples) > 0: 
+        qna_max = max([t.closest_triple_dst for t in q.question_with_answer_triples])
+    else:
+        qna_max = -3
 
     # get closest triple to Q+D triples
     qnd_max_list = [0,0,0]
 
     for i in range(3):
-        qnd_max_list[i] = max([t.closest_triple_dst for t in q.question_with_distractors_triples[i]])
+        if len(q.question_with_distractors_triples[i]) > 0:
+            qnd_max_list[i] = max([t.closest_triple_dst for t in q.question_with_distractors_triples[i]])
+        else:
+            qnd_max_list[i] = -3
 
     qnd_max = max(qnd_max_list)
 
     if qna_max > qnd_max and qna_max > threshold:
-        return 1
+        return np.array([1,0,0])
     
     if qnd_max > qna_max and qnd_max > threshold:
-        return 0
+        return np.array([0,1,0])
     
-    return -1
-    
+    return np.array([0,0,1])
+
+def calculate_pnr(l):
+    #return (prec,recall)
+    return np.array([l[0]/(l[0]+l[1]), (l[0]+l[1])/(l[0]+l[1]+l[2])])
+
+def pnr_calc(q_list, N = 10):
+    threshold_min = -3
+    threshold_max = 3
+
+    pnr = []
+
+    for thresh in np.linspace(threshold_min, threshold_max, N):
+        res = [answer_question(q, thresh) for q in q_list]
+        res_mat = np.asmatrix(np.stack(res))
+        res_arr_T = np.transpose(np.matrix.sum(res_mat, axis = 0))
+        pnr.append(calculate_pnr(res_arr_T))
+
+    pnr_mat = np.asmatrix(np.stack(pnr))
+
+    return pnr_mat

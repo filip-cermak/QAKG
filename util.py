@@ -197,3 +197,13 @@ def prettify_json(filename):
 
     with open(filename[0:-5] + "_pretty" + ".json", 'w') as f:
         json.dump(s, f, indent=4)
+
+def check_if_triple_from_choices(sentence_ids):
+
+    for id in sentence_ids:
+        part_of_question = id.split('%')[2]
+
+        if part_of_question != 'context':
+            return True
+
+    return False

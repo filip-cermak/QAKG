@@ -162,3 +162,17 @@ def test_apply_function_to_all_question_triples():
 def test_prettify_json():
     util.prettify_json("./test_files/1.json")
     os.remove("./test_files/1_pretty.json")
+
+def test_check_if_triple_from_choices():
+
+    assert not util.check_if_triple_from_choices(
+        ['RACE/test/middle/6370.txt%0%context%1', 
+        'RACE/test/middle/6370.txt%1%context%1'])
+
+    assert util.check_if_triple_from_choices(
+        ['RACE/test/middle/6370.txt%0%contex%1', 
+        'RACE/test/middle/6370.txt%1%context%1'])
+
+    assert util.check_if_triple_from_choices(
+        ['RACE/test/middle/6370.txt%0%qna%1'])
+    

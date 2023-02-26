@@ -153,16 +153,16 @@ def filter_qna_triples(triples, list_of_ids, ids_with_questions):
 
         if question.answer.lower() in triple_str:
             filtered_triples.append(triple)
-            print("1 - activated")
+            #print("1 - activated")
         elif question.distractors[0].lower() in triple_str:
             filtered_triples.append(triple)
-            print("2 - activated")
+            #print("2 - activated")
         elif question.distractors[1].lower() in triple_str:
             filtered_triples.append(triple)
-            print("3 - activated")
+            #print("3 - activated")
         elif question.distractors[2].lower() in triple_str:
             filtered_triples.append(triple)
-            print("4 - activated")
+            #print("4 - activated")
 
     return filtered_triples
 

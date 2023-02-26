@@ -207,3 +207,16 @@ def check_if_triple_from_choices(sentence_ids):
             return True
 
     return False
+
+def mock_json_from_deepex_triple(triple):
+    return {
+        'subject' : triple.subject,
+        'subject_char_span' : (0,1),
+        'relation' : triple.relation,
+        'object' : triple.object,
+        'object_char_span' : (0,1),
+        'sentence' : triple.sentence,
+        'score' : triple.score,
+        'contrastive_dis' : 0,
+        'offset' : 0
+    }

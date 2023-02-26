@@ -133,6 +133,8 @@ def json_to_triples(filename, sentences_with_ids):
     return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 
 def filter_qna_triples(triples, list_of_ids, ids_with_questions):
+    #input triples only dicts from json input
+    
     #this is the simples possible implementation, may prove as not enough
     #in the future
 
@@ -146,11 +148,8 @@ def filter_qna_triples(triples, list_of_ids, ids_with_questions):
     #check with only the first question
     question = ids_with_questions['%'.join((list_of_ids[0]).split('%')[0:2])]
 
-    for triple in triples:
-        try:
-            triple_str = triple.to_string().lower()
-        except:    
-            triple_str = json_triple_to_triple(triple).to_string().lower()
+    for triple in triples:    
+        triple_str = json_triple_to_triple(triple).to_string().lower()
 
         if question.answer.lower() in triple_str:
             filtered_triples.append(triple)
@@ -182,7 +181,10 @@ def json_to_questions_with_triples(filename, ids_with_questions, triple_filter =
             s[ids] = filter_qna_triples(s[ids], list_of_ids, ids_with_questions)
     
         # take only 2 top triple acording to the contrastive loss
-        s[ids] = s[ids][:2]
+        try:
+            s[ids] = s[ids][:2]
+        except:
+            pass #in case not enough triples left
 
         # turn json triple to object, also add embeddings
         for triple in s[ids]:

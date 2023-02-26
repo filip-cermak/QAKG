@@ -6,6 +6,7 @@ import json
 import numpy as np
 import lzma
 import pickle
+import util
 
 
 def test_create_question_ids():
@@ -292,11 +293,11 @@ def test_answer_question():
     [deepex.answer_question(q, 2.7) for q in q_list]
 
 def test_filter_qna_triples():
-
-    #test case 1
-    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
-    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
-    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+    
+    #test case 1 
+    triple_1 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", ""))
+    triple_2 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", ""))
+    triple_3 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", ""))
 
     triples = [
         triple_1,
@@ -316,9 +317,9 @@ def test_filter_qna_triples():
     assert [triple_1, triple_2] == deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
     
     #test case 2
-    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
-    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
-    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+    triple_1 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", ""))
+    triple_2 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", ""))
+    triple_3 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", ""))
 
     triples = [
         triple_1,
@@ -338,9 +339,9 @@ def test_filter_qna_triples():
     assert [triple_1, triple_2, triple_3] == deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
 
     #test case 3
-    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
-    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
-    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+    triple_1 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", ""))
+    triple_2 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", ""))
+    triple_3 = util.mock_json_from_deepex_triple(data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", ""))
 
     triples = [
         triple_1,

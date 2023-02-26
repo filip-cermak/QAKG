@@ -178,7 +178,7 @@ def json_to_questions_with_triples(filename, ids_with_questions, triple_filter =
 
         #triple filter here
         if triple_filter != None:
-            s[ids] = filter_qna_triples(s[ids], list_of_ids, ids_with_questions)
+            s[ids] = triple_filter(s[ids], list_of_ids, ids_with_questions)
     
         # take only 2 top triple acording to the contrastive loss
         try:

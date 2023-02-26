@@ -290,3 +290,71 @@ def test_answer_question():
     #load single question
 
     [deepex.answer_question(q, 2.7) for q in q_list]
+
+def test_filter_qna_triples():
+
+    #test case 1
+    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
+    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
+    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+
+    triples = [
+        triple_1,
+        triple_2,
+        triple_3,
+    ]
+    
+    list_of_ids = [
+        'RACE/test/middle/6370.txt%0%asnwer%1', 
+        'RACE/test/middle/6370.txt%1%context%1']
+    
+    ids_with_questions = {
+        'RACE/test/middle/6370.txt%0' : data_model.Question("window", "tree", ["patch", "cat", "eight"], "", "")
+        }
+
+    output = deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
+    assert [triple_1, triple_2] == deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
+    
+    #test case 2
+    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
+    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
+    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+
+    triples = [
+        triple_1,
+        triple_2,
+        triple_3,
+    ]
+    
+    list_of_ids = [
+        'RACE/test/middle/6370.txt%0%context%1', 
+        'RACE/test/middle/6370.txt%1%context%1']
+    
+    ids_with_questions = {
+        'RACE/test/middle/6370.txt%0' : data_model.Question("window", "tree", ["patch", "window", "eight"], "", "")
+        }
+
+    output = deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
+    assert [triple_1, triple_2, triple_3] == deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
+
+    #test case 3
+    triple_1 = data_model.Deepex_triple("cat", [], "sat", "on mat", [], "", "", "")
+    triple_2 = data_model.Deepex_triple("sat", [], "cat", "on mat", [], "", "", "")
+    triple_3 = data_model.Deepex_triple("dog", [], "sat", "on mat", [], "", "", "")
+
+    triples = [
+        triple_1,
+        triple_2,
+        triple_3,
+    ]
+    
+    list_of_ids = [
+        'RACE/test/middle/6370.txt%0%asnwer%1', 
+        'RACE/test/middle/6370.txt%1%context%1']
+    
+    ids_with_questions = {
+        'RACE/test/middle/6370.txt%0' : data_model.Question("window", "tree", ["patch", "window", "eight"], "", "")
+        }
+
+    output = deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)
+    assert [] == deepex.filter_qna_triples(triples, list_of_ids, ids_with_questions)

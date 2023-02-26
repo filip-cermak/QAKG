@@ -132,7 +132,42 @@ def json_to_triples(filename, sentences_with_ids):
 
     return ids_with_triples #format {[id1, id2...] : [triple1, triple2...], ...}
 
-def json_to_questions_with_triples(filename, ids_with_questions):
+def filter_qna_triples(triples, list_of_ids, ids_with_questions):
+    #this is the simples possible implementation, may prove as not enough
+    #in the future
+
+    #check whether this sentence is going to the distractor/answer
+    if not util.check_if_triple_from_choices(list_of_ids):
+        return triples
+
+    #if yes, iterate through triples excluding the ones which don't include answer/distractor
+    filtered_triples = []
+
+    #check with only the first question
+    question = ids_with_questions['%'.join((list_of_ids[0]).split('%')[0:2])]
+
+    for triple in triples:
+        try:
+            triple_str = triple.to_string().lower()
+        except:    
+            triple_str = json_triple_to_triple(triple).to_string().lower()
+
+        if question.answer.lower() in triple_str:
+            filtered_triples.append(triple)
+            print("1 - activated")
+        elif question.distractors[0].lower() in triple_str:
+            filtered_triples.append(triple)
+            print("2 - activated")
+        elif question.distractors[1].lower() in triple_str:
+            filtered_triples.append(triple)
+            print("3 - activated")
+        elif question.distractors[2].lower() in triple_str:
+            filtered_triples.append(triple)
+            print("4 - activated")
+
+    return filtered_triples
+
+def json_to_questions_with_triples(filename, ids_with_questions, triple_filter = None):
     #this version has global sentence IDs included in JSON files
 
     with open(filename, "r") as f:
@@ -140,8 +175,11 @@ def json_to_questions_with_triples(filename, ids_with_questions):
 
     for ids in tqdm(list(s.keys())):
         triple_list = []
+        list_of_ids = ast.literal_eval(ids)
 
-        #s[ids] = sorted(s[ids], key = lambda x: x["score"], reverse=True)[:2]
+        #triple filter here
+        if triple_filter != None:
+            s[ids] = filter_qna_triples(s[ids], list_of_ids, ids_with_questions)
     
         # take only 2 top triple acording to the contrastive loss
         s[ids] = s[ids][:2]
@@ -151,8 +189,6 @@ def json_to_questions_with_triples(filename, ids_with_questions):
             triple_list.append(enrich_deepex_triple_with_embeddings(json_triple_to_triple(triple)))
 
         #now assing these tripels to the ids_with_questions
-        list_of_ids = ast.literal_eval(ids)
-
         for single_id in list_of_ids:
             decode_deepex_helper(single_id, triple_list, ids_with_questions)
 

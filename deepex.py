@@ -327,10 +327,10 @@ def dst(t_a, t_b):
     return out
 
 def answer_question(q, threshold):
-    # returns  1 if answered correctly
-    # returns  0 if answered correctly
-    # returns -1 if answered correctly
-
+    # returns [1,0,0] if answered correctly
+    # returns [0,1,0] if answered incorrectly
+    # returns [0,0,1] if not answered
+    
     # get closest triple to Q+A triples
 
     if len(q.question_with_answer_triples) > 0: 

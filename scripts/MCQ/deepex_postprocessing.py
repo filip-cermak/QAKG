@@ -21,14 +21,15 @@ with lzma.open("../commons/eval_question_list_filtered_coref_resolved_2022-10-22
     q_list_filtered = pickle.load(f)
     ids_with_questions = deepex.create_question_ids(q_list_filtered)
 
-for file_name in tqdm(sorted(os.listdir('partitioned-results-mini'))): 
-    deepex.json_to_questions_with_triples('partitioned-results-mini/' + file_name, ids_with_questions)
+input_dir_name = '????'
+
+for file_name in tqdm(sorted(os.listdir(input_dir_name))): 
+    deepex.json_to_questions_with_triples(input_dir_name + '/' + file_name, ids_with_questions, triple_filter=deepex.filter_qna_triples)
 
 #2########################################################
-dir_name_1 = 'partitioned-mini-deepex-postprocessing-1'
-#dir_name_2 = 'partitioned-mini-deepex-postprocessing-2'
+output_dir_name = '????'
 
 [deepex.resolve_question(q) for q in tqdm(list(ids_with_questions.values()))]
 
 print("Partitioning")
-util.partition_and_save(list(ids_with_questions.values()), 100, dir_name_1)
+util.partition_and_save(list(ids_with_questions.values()), 100, output_dir_name)

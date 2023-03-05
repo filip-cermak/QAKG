@@ -357,6 +357,60 @@ def answer_question(q, threshold):
     
     return np.array([0,0,1])
 
+def filter_correctly_asnwered_questions_based_on_threshold(q, threshold):
+    # returns input question if answered correctly, otherwise None
+
+    if len(q.question_with_answer_triples) > 0: 
+        qna_max = max([t.closest_triple_dst for t in q.question_with_answer_triples])
+    else:
+        qna_max = -3
+
+    # get closest triple to Q+D triples
+    qnd_max_list = [0,0,0]
+
+    for i in range(3):
+        if len(q.question_with_distractors_triples[i]) > 0:
+            qnd_max_list[i] = max([t.closest_triple_dst for t in q.question_with_distractors_triples[i]])
+        else:
+            qnd_max_list[i] = -3
+
+    qnd_max = max(qnd_max_list)
+
+    if qna_max > qnd_max and qna_max > threshold:
+        return q
+    
+    if qnd_max > qna_max and qnd_max > threshold:
+        return None
+    
+    return None
+
+def filter_incorrectly_asnwered_questions_based_on_threshold(q, threshold):
+    # returns input question if answered incorrectly, otherwise None
+
+    if len(q.question_with_answer_triples) > 0: 
+        qna_max = max([t.closest_triple_dst for t in q.question_with_answer_triples])
+    else:
+        qna_max = -3
+
+    # get closest triple to Q+D triples
+    qnd_max_list = [0,0,0]
+
+    for i in range(3):
+        if len(q.question_with_distractors_triples[i]) > 0:
+            qnd_max_list[i] = max([t.closest_triple_dst for t in q.question_with_distractors_triples[i]])
+        else:
+            qnd_max_list[i] = -3
+
+    qnd_max = max(qnd_max_list)
+
+    if qna_max > qnd_max and qna_max > threshold:
+        return None
+    
+    if qnd_max > qna_max and qnd_max > threshold:
+        return q
+    
+    return None
+
 def calculate_pnr(l):
     #return (prec,recall)
     return np.array([l[0]/(l[0]+l[1]), (l[0]+l[1])/(l[0]+l[1]+l[2])])

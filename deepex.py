@@ -196,6 +196,36 @@ def json_to_questions_with_triples(filename, ids_with_questions, triple_filter =
 
     return ids_with_questions
 
+def json_to_questions_with_triples_simple_relation_repre(filename, ids_with_questions, triple_filter = None):
+    #this version has global sentence IDs included in JSON files
+
+    with open(filename, "r") as f:
+        s = json.load(f)
+
+    for ids in tqdm(list(s.keys())):
+        triple_list = []
+        list_of_ids = ast.literal_eval(ids)
+
+        #triple filter here
+        if triple_filter != None:
+            s[ids] = triple_filter(s[ids], list_of_ids, ids_with_questions)
+    
+        # take only 2 top triple acording to the contrastive loss
+        try:
+            s[ids] = s[ids][:2]
+        except:
+            pass #in case not enough triples left
+
+        # turn json triple to object, also add embeddings
+        for triple in s[ids]:
+            triple_list.append(enrich_deepex_triple_with_embeddings_simple_relation_repre(json_triple_to_triple(triple)))
+
+        #now assing these tripels to the ids_with_questions
+        for single_id in list_of_ids:
+            decode_deepex_helper(single_id, triple_list, ids_with_questions)
+
+    return ids_with_questions
+
 def json_triple_to_triple(d):
 
     o = d['offset']
@@ -274,6 +304,36 @@ def enrich_deepex_triple_with_embeddings(deepex_triple):
         deepex_triple.matrix = None
     else:
         deepex_triple.matrix = [average_embeds(subject_embeds)[0], relation_embeds, average_embeds(object_embeds)[0]]
+
+    return deepex_triple
+
+def enrich_deepex_triple_with_embeddings_simple_relation_repre(deepex_triple):
+
+    chr_spans_with_embeds = embed.embed(deepex_triple.sentence)
+
+    subject_embeds_chr_spans = embed.chr_spn_matcher(deepex_triple.subject_char_span,
+                                             list(chr_spans_with_embeds.keys()))
+
+    object_embeds_chr_spans = embed.chr_spn_matcher(deepex_triple.object_char_span,
+                                             list(chr_spans_with_embeds.keys()))
+
+    subject_embeds = [chr_spans_with_embeds[x] for x in subject_embeds_chr_spans]
+    object_embeds = [chr_spans_with_embeds[x] for x in object_embeds_chr_spans]
+    
+    ############MODIFIED##############
+    relation_embeds = list(embed.embed(deepex_triple.relation).values()) 
+    ############MODIFIED##############
+
+    deepex_triple.subject_embeds = subject_embeds
+    deepex_triple.object_embeds = object_embeds
+    deepex_triple.relation_embeds = relation_embeds
+    
+    ############MODIFIED##############
+    if average_embeds(subject_embeds)[1] == 0 or average_embeds(object_embeds)[1] == 0 or average_embeds(relation_embeds)[1] == 0:
+        deepex_triple.matrix = None
+    else:
+        deepex_triple.matrix = [average_embeds(subject_embeds)[0], average_embeds(relation_embeds)[0], average_embeds(object_embeds)[0]]
+    ############MODIFIED##############
 
     return deepex_triple
 

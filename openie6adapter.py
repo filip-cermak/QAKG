@@ -1,4 +1,5 @@
 import nltk.data
+import re
 
 tokenizer = nltk.data.load('tokenizers/punkt/english.pickle')
 
@@ -13,11 +14,13 @@ def q_list2sentences(l):
 def question2sentences(q):
     out = []
 
-    out.extend(tokenizer.tokenize(q.context))
-    out.extend(tokenizer.tokenize(q.question_with_answer))
+    rx = r"\.(?=\S)"
+
+    out.extend(tokenizer.tokenize(re.sub(rx, ". ", q.context)))
+    out.extend(tokenizer.tokenize(re.sub(rx, ". ", q.question_with_answer)))
 
     for qnd in q.question_with_distractors:
-        out.extend(tokenizer.tokenize(qnd))
+        out.extend(tokenizer.tokenize(re.sub(rx, ". ", qnd)))
 
     return out
 

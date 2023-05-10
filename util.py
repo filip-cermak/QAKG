@@ -3,6 +3,16 @@ import pickle
 import lzma
 import json
 
+import re
+
+def add_space_after_punctuation(text):
+    # Define the pattern to match punctuation characters
+    pattern = r'([!.?])'
+    
+    # Use the pattern to add a space after each punctuation character
+    spaced_text = re.sub(pattern, r'\1 ', text)
+    
+    return spaced_text
 
 def intersect(a, b):
     fst, snd = (a, b) if len(a) < len(b) else (b, a)

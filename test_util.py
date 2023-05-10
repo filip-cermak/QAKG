@@ -1,6 +1,7 @@
 import util
 import data_model
 import os
+import pytest
 
 def test_intersect():
 
@@ -176,3 +177,13 @@ def test_check_if_triple_from_choices():
     assert util.check_if_triple_from_choices(
         ['RACE/test/middle/6370.txt%0%qna%1'])
     
+@pytest.mark.parametrize("text, expected_result", [
+    ("Hello,World!This=is;a-sample-text.", "Hello,World! This=is;a-sample-text. "),
+    ("This is a sample text", "This is a sample text"),
+    ("Hello,   World! This=is ;a-sample-text.", "Hello,   World!  This=is ;a-sample-text. "),
+    ("This is an example with unicode punctuation: ¡Hola, mundo! ¿Cómo estás?",
+     "This is an example with unicode punctuation: ¡Hola, mundo!  ¿Cómo estás? ")
+])
+def test_add_space_after_punctuation(text, expected_result):
+    result = util.add_space_after_punctuation(text)
+    assert result == expected_result

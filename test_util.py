@@ -187,3 +187,34 @@ def test_check_if_triple_from_choices():
 def test_add_space_after_punctuation(text, expected_result):
     result = util.add_space_after_punctuation(text)
     assert result == expected_result
+
+@pytest.mark.parametrize("string, expected_result", [
+    ("Hello X.X World", True),
+    ("Python is fun!", False),
+    ("Python is fun!Or this.", True),
+    ("No pattern here", False),
+    ("Pattern with spaces", False),
+    ("X !X", True),
+    ("X?X", True),
+    ("X. X", False),
+    ("X X", False),
+])
+
+def test_contains_pattern(string, expected_result):
+    assert util.contains_pattern(string) == expected_result
+
+
+@pytest.mark.parametrize("string, expected_result", [
+    ("Hello X.X World", "Hello X. X World"),
+    ("Python is fun!", "Python is fun!"),
+    ("Python is fun!Or this.", "Python is fun! Or this. "),
+    ("No pattern here", "No pattern here"),
+    ("X !X", "X ! X"),
+    ("X?X", "X? X"),
+    ("X. X", "X. X"),
+    ("X X", "X X"),
+])
+
+def test_augment_punctuation(string, expected_result):
+    assert util.augment_punctuation(string) == expected_result
+

@@ -5,6 +5,17 @@ import json
 
 import re
 
+def augment_punctuation(string):
+    if contains_pattern(string):
+        return add_space_after_punctuation(string)
+    
+    return string
+
+def contains_pattern(string):
+    pattern = r'[.?!]\S'
+    match = re.search(pattern, string)
+    return bool(match)
+
 def add_space_after_punctuation(text):
     # Define the pattern to match punctuation characters
     pattern = r'([!.?])'
